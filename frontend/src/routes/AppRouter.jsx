@@ -8,6 +8,7 @@ import RegisterPage from "../pages/RegisterPage";
 import AnimalsPage from "../pages/AnimalsPage";
 import NotFoundPage from "../pages/NotFoundPage";
 import Layout from "../layouts/Layout";
+import ProductsPage from "../pages/ProductsPage/ProductsPage";
 
 const AppRouter = () => {
   return (
@@ -21,6 +22,7 @@ const AppRouter = () => {
           <Route exact path="/cita" component={AppointmentPage} />
           <Route exact path="/carrito" component={CartPage} />
           <Route exact path="/adquisicion" component={AnimalsPage} />
+          <Route exact path="/productos" component={ProductsPage} />
 
           <Route exact path="*" component={NotFoundPage} />
         </Switch>

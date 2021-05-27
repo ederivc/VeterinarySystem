@@ -1,6 +1,5 @@
 .navbar {
   background-color: #fff;
-  height: 5rem;
 }
 
 .brand {
@@ -10,7 +9,7 @@
 
 .navLink {
   color: #333 !important;
-  font-size: 1.1rem;
+  font-size: 1.3rem;
   font-weight: 300;
 }
 

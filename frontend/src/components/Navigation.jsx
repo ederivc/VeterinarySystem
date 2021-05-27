@@ -8,7 +8,6 @@ const Navigation = () => {
       collapseOnSelect
       expand="lg"
       variant="light"
-      // bg="light"
       className={styles.navbar}
     >
       <Navbar.Brand as={Link} to="/" className={styles.brand}>
@@ -28,10 +27,20 @@ const Navigation = () => {
           </Nav.Link>
         </Nav>
         <Nav>
-          <Nav.Link as={Link} to="/carrito" className={styles.navLink}>
+          <Nav.Link
+            as={Link}
+            to="/carrito"
+            className={styles.navLink}
+            title="Carrito de Compras"
+          >
             <box-icon name="cart" type="solid" size="md"></box-icon>
           </Nav.Link>
-          <Nav.Link as={Link} to="/login" className={styles.navLink}>
+          <Nav.Link
+            as={Link}
+            to="/login"
+            className={styles.navLink}
+            title="Iniciar Sesión"
+          >
             <box-icon type="solid" name="user-circle" size="md"></box-icon>
           </Nav.Link>
         </Nav>

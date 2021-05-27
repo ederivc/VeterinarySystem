@@ -1,4 +1,12 @@
-.container {
+/* .mainContainer {
+  margin: 0;
+  padding: 0;
+  border: 1px solid red;
+} */
+
+/* HEADER  */
+
+.containerHeader {
   min-height: 75vh;
   background: url(./home-bg.webp) no-repeat;
   background-size: cover;
@@ -36,6 +44,7 @@
   display: flex;
   align-items: center;
   z-index: 1;
+  border: 1px solid red;
 }
 
 .btn p {
@@ -70,68 +79,172 @@
   transform: translate3d(-50%, -50%, 0) scale3d(1, 1, 1);
 }
 
-/* .home {
-  min-height: 75vh;
-  background: url(./home-bg.webp) no-repeat;
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  align-items: center;
+/* RESPONSIVE HEADER */
+
+@media only screen and (max-width: 1200px) {
+  .content span {
+    font-size: 1.5rem;
+  }
+
+  .content h3 {
+    font-size: 2.5rem;
+    line-height: 3rem;
+  }
 }
 
-.home .content span {
+@media only screen and (max-width: 960px) {
+  .content span {
+    font-size: 1.5rem;
+  }
+
+  .content h3 {
+    font-size: 2rem;
+    line-height: 3rem;
+  }
+}
+@media only screen and (max-width: 700px) {
+  .content span {
+    font-size: 1.3rem;
+  }
+
+  .content h3 {
+    font-size: 1.8rem;
+    line-height: 3rem;
+  }
+
+  .btn {
+    height: 3rem;
+    width: 10rem;
+  }
+}
+
+/* PRODUCTS */
+
+.products .headingProducts {
+  text-align: center;
+  padding: 1rem;
   color: #333;
+  text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.1);
+  font-size: 2rem;
+  padding-top: 2rem;
+  text-transform: capitalize;
+}
+
+.products .box_container .box {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  border: 0.1rem solid rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  margin: 1.5rem;
+  flex: 1 1 20rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.products .box_container .box img {
+  width: 9rem;
+}
+
+.products .box_container .box .contentProducts {
+  padding: 1rem;
+}
+
+.products .box_container .box .contentProducts .stars i {
+  font-size: 1.5rem;
+  color: var(--yellow);
+}
+
+.products .box_container .box .contentProducts h3 {
+  font-size: 1.2rem;
+  color: #333;
+  padding: 0.5rem 0;
+}
+
+.products .box_container .box .contentProducts .price {
+  font-size: 1rem;
+  color: #666;
+}
+
+.products .box_container .box .contentProducts .price span {
+  font-size: 1rem;
+  text-decoration: line-through;
+}
+
+/* OFFER */
+
+.offer .boxContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.offer .boxContainer .offerCol {
+  flex: 1 1 40rem;
+  margin: 2rem;
+  position: relative;
+}
+
+.offer .boxContainer .offerCol img {
+  width: 100%;
+}
+
+.offer .boxContainer .offerCol .contentAdopcion {
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  transform: translateY(-50%);
+  color: #333;
+}
+
+.offer .boxContainer .offerCol .contentAdopcion span {
   font-size: 2rem;
 }
 
-.home .content h3 {
-  color: #333;
-  font-size: 5.5rem;
+.offer .boxContainer .box .contentAdopcion h3 {
+  font-size: 3.5rem;
 }
 
-.home .content .btn {
+.offer .boxContainer .offerCol:first-child .contentAdopcion .btnAdopPerro {
   background: #fff;
-}
-
-.btn {
   display: inline-block;
   margin-top: 1rem;
   padding: 0.7rem 2.5rem;
   font-size: 1.5rem;
   border-radius: 0.5rem;
-  color: #333;
   background: var(--yellow);
   position: relative;
   box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
   overflow: hidden;
   z-index: 0;
+  color: #333;
 }
 
-.btn::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  clip-path: polygon(0 0, 100% 0, 10% 25%, 0 100%);
-  z-index: -1;
-  background: #444;
-  transition: 0.3s cubic-bezier(0.38, 1.15, 0.7, 1.12);
+.offer .boxContainer .offerCol:first-child .contentAdopcion .btnAdopGato {
+  background: var(--yellow);
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.7rem 2.5rem;
+  font-size: 1.5rem;
+  border-radius: 0.5rem;
+  position: relative;
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  z-index: 0;
+  color: #333;
 }
 
-.btn:hover:before {
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+.offer .boxContainer .offerCol:last-child .contentAdopcion {
+  color: #fff;
 }
 
-.btn:hover {
-  color: var(--yellow);
-}
-
-.home {
-  justify-content: center;
-}
-
-.home .content {
+.offer .headingAdopcion {
   text-align: center;
-} */
+  padding: 1rem;
+  color: #333;
+  text-shadow: 0 0.3rem 0.5rem rgba(0, 0, 0, 0.1);
+  font-size: 2rem;
+  padding-top: 2rem;
+  text-transform: capitalize;
+}
