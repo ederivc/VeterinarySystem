@@ -1,3 +1,27 @@
+.container {
+  margin-top: 3rem;
+}
+
 .title {
-  color: blue;
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.form {
+  width: 25rem;
+  margin: auto;
+  box-sizing: border-box;
+  padding: 2rem 2rem;
+  background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
+  border-radius: 10px;
+}
+
+.submitBtn {
+  width: 100%;
+}
+
+.redirect {
+  text-align: center;
+  margin-top: 2rem;
 }

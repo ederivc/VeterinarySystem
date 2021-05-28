@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./HomePage.module.css";
 import { Link } from "react-router-dom";
-import { Container, Button, Row, Col, Image } from "react-bootstrap";
+import { Container, Button, Row, Col } from "react-bootstrap";
 // import dog from "./c1.webp";
 // import cat from "./c2.webp";
 // import rabbit from "./c3.webp";

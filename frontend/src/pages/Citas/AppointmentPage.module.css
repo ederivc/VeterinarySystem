@@ -1,0 +1,16 @@
+.container {
+  /* border: 1px solid darkred; */
+  margin: 1.2rem auto;
+}
+
+.sectionSubtitle {
+  font-weight: 500;
+  font-size: 1.3rem;
+  margin-right: 2rem;
+  margin-bottom: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+.input {
+  height: 3rem !important;
+}

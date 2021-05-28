@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import AccountPage from "../pages/AccountPage";
-import AppointmentPage from "../pages/AppointmentPage";
+import AppointmentPage from "../pages/Citas/AppointmentPage";
 import CartPage from "../pages/CartPage";
 import HomePage from "../pages/HomePage/HomePage";
 import LoginPage from "../pages/Login/LoginPage";
@@ -16,8 +16,8 @@ const AppRouter = () => {
       <Layout>
         <Switch>
           <Route exact path="/" component={HomePage} />
-          <Route exact path="/login" component={LoginPage} />
           <Route exact path="/registro" component={RegisterPage} />
+          <Route exact path="/login" component={LoginPage} />
           <Route exact path="/cuenta" component={AccountPage} />
           <Route exact path="/cita" component={AppointmentPage} />
           <Route exact path="/carrito" component={CartPage} />

@@ -1,8 +1,19 @@
 import { Navbar, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import useAuth from "../auth/useAuth";
 import styles from "./Navigation.module.css";
 
 const Navigation = () => {
+  const { user, setUser } = useAuth();
+
+  const handleLogOut = async (e) => {
+    e.preventDefault();
+    const response = await fetch("/auth/logout");
+    const json = await response.json();
+    console.log(json);
+    setUser("");
+  };
+
   return (
     <Navbar
       collapseOnSelect
@@ -43,6 +54,8 @@ const Navigation = () => {
           >
             <box-icon type="solid" name="user-circle" size="md"></box-icon>
           </Nav.Link>
+          {user ? <Nav.Link> {user} </Nav.Link> : null}
+          {user ? <Nav.Link onClick={handleLogOut}> Log out </Nav.Link> : null}
         </Nav>
       </Navbar.Collapse>
     </Navbar>
