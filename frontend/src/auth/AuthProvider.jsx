@@ -5,6 +5,12 @@ export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState();
+  const [sidebar, setSidebar] = useState(false);
+
+  const showSidebar = () => {
+    console.log("HERE");
+    setSidebar(!sidebar);
+  };
 
   const checkSession = async () => {
     const response = await fetch("/auth/session", {
@@ -15,8 +21,11 @@ const AuthProvider = ({ children }) => {
       },
     });
     const json = await response.json();
-    console.log(json.email);
-    setUser(json.email);
+    if (!json) {
+      setUser("");
+    } else {
+      setUser(json);
+    }
   };
 
   useEffect(() => {
@@ -25,13 +34,10 @@ const AuthProvider = ({ children }) => {
 
   const isLogged = () => !!user;
 
-  const contextValue = {
-    user,
-    setUser,
-    isLogged,
-  };
+  const contextValue = { user, setUser, isLogged, sidebar, showSidebar };
 
   return (
+    // <h1>jjkjlk</h1>
     <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
   );
 };

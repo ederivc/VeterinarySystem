@@ -35,4 +35,9 @@ def create_app(test_config=None):
     from . import auth
     app.register_blueprint(auth.bp)
 
+    from . import citas
+    app.register_blueprint(citas.bp)
+
+    # from .admin import admin 
+
     return app

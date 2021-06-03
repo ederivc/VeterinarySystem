@@ -1,0 +1,10 @@
+Legend
+
+[X] - Done
+[O] - In Progress
+[~] - Can't do, troublesome, revisit
+[?] - TODO, Low Priority, maybe won't be done
+[ ] - TODO
+
+[] Validate citas inputs
+[] Add default select value

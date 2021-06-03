@@ -1,5 +1,5 @@
 .navbar {
-  background-color: #fff;
+  /* background-color: #f9f0d1; */
 }
 
 .brand {
@@ -8,7 +8,7 @@
 }
 
 .navLink {
-  color: #333 !important;
+  color: #fff !important;
   font-size: 1.3rem;
   font-weight: 300;
 }
@@ -35,8 +35,4 @@
 .navLink:hover::after {
   transform: scaleX(1);
   transform-origin: bottom left;
-}
-
-.navLinkIcon {
-  font-size: 2rem;
 }

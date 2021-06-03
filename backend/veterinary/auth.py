@@ -12,7 +12,7 @@ bp = Blueprint('auth', __name__, url_prefix='/auth')
 @bp.route('/login', methods=('GET', 'POST'))
 def login():
     if request.method == 'POST':
-        user = request.json["user"]
+        user = request.json["usera"]
         password = request.json["password"]
 
         db = get_db()
@@ -22,6 +22,7 @@ def login():
         ).fetchone()
 
         if user_request is None:
+            
             error = "Incorrect user"
             abort(400)
 
@@ -40,8 +41,9 @@ def login():
             #     _dict[i] = value
             # print(type(user_request))
             # print(_dict)
-            print(user_request)
+            # print("login response", user_request)
             return user_request
+
 
 @bp.route('/session', methods=['GET'])
 def sessions():
@@ -50,10 +52,12 @@ def sessions():
     else:
         return {"asd": "klj"}
 
+
 @bp.route('/logout')
 def logout():
     session.clear()
     return {"asds": "asdsad"}
+
 
 @bp.before_app_request
 def load_logged_in_user():

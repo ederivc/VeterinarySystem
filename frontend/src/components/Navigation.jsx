@@ -18,8 +18,9 @@ const Navigation = () => {
     <Navbar
       collapseOnSelect
       expand="lg"
-      variant="light"
-      className={styles.navbar}
+      variant="dark"
+      bg="dark"
+      // className={styles.navbar}
     >
       <Navbar.Brand as={Link} to="/" className={styles.brand}>
         Veterinary
@@ -44,18 +45,39 @@ const Navigation = () => {
             className={styles.navLink}
             title="Carrito de Compras"
           >
-            <box-icon name="cart" type="solid" size="md"></box-icon>
+            <box-icon
+              name="cart"
+              type="solid"
+              size="md"
+              color="#fff"
+            ></box-icon>
           </Nav.Link>
-          <Nav.Link
-            as={Link}
-            to="/login"
-            className={styles.navLink}
-            title="Iniciar Sesión"
-          >
-            <box-icon type="solid" name="user-circle" size="md"></box-icon>
-          </Nav.Link>
-          {user ? <Nav.Link> {user} </Nav.Link> : null}
-          {user ? <Nav.Link onClick={handleLogOut}> Log out </Nav.Link> : null}
+          {user ? null : (
+            <Nav.Link
+              as={Link}
+              to="/login"
+              className={styles.navLink}
+              title="Iniciar Sesión"
+            >
+              <box-icon
+                type="solid"
+                name="user-circle"
+                size="md"
+                color="#fff"
+              ></box-icon>
+            </Nav.Link>
+          )}
+
+          {user ? (
+            <Nav.Link as={Link} to="/cuenta" className={styles.navLink}>
+              Mi cuenta
+            </Nav.Link>
+          ) : null}
+          {user ? (
+            <Nav.Link onClick={handleLogOut} className={styles.navLink}>
+              Log out
+            </Nav.Link>
+          ) : null}
         </Nav>
       </Navbar.Collapse>
     </Navbar>

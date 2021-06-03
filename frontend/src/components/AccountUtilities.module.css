@@ -1,0 +1,35 @@
+.sidebarOption {
+  color: #000;
+  text-decoration: none;
+}
+
+.sidebarOption:hover {
+  cursor: pointer;
+  color: #000;
+  text-decoration: none;
+}
+
+.navText {
+  display: flex;
+  align-items: center;
+  padding: 8px 0px 8px 16px;
+  list-style: none;
+  height: 60px;
+  color: black;
+}
+
+.navText a {
+  display: flex;
+  align-items: center;
+  width: 90%;
+}
+
+.sidebarSpan {
+  margin-left: 1rem;
+  font-size: 1.2rem;
+}
+
+.navText:hover {
+  background-color: #1a83ff;
+  border-radius: 4px;
+}

@@ -1,5 +1,4 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import AccountPage from "../pages/AccountPage";
 import AppointmentPage from "../pages/Citas/AppointmentPage";
 import CartPage from "../pages/CartPage";
 import HomePage from "../pages/HomePage/HomePage";
@@ -9,6 +8,9 @@ import AnimalsPage from "../pages/AnimalsPage";
 import NotFoundPage from "../pages/NotFoundPage";
 import Layout from "../layouts/Layout";
 import ProductsPage from "../pages/ProductsPage/ProductsPage";
+import AdminPage from "../pages/Admin/AdminPage";
+import PrivateRoute from "./PrivateRoute";
+import BaseAccountPage from "../pages/AccountPage/BaseAccountPage";
 
 const AppRouter = () => {
   return (
@@ -18,11 +20,12 @@ const AppRouter = () => {
           <Route exact path="/" component={HomePage} />
           <Route exact path="/registro" component={RegisterPage} />
           <Route exact path="/login" component={LoginPage} />
-          <Route exact path="/cuenta" component={AccountPage} />
+          <PrivateRoute path="/cuenta" component={BaseAccountPage} />
           <Route exact path="/cita" component={AppointmentPage} />
           <Route exact path="/carrito" component={CartPage} />
           <Route exact path="/adquisicion" component={AnimalsPage} />
           <Route exact path="/productos" component={ProductsPage} />
+          <PrivateRoute exact path="/admin" component={AdminPage} />
 
           <Route exact path="*" component={NotFoundPage} />
         </Switch>
