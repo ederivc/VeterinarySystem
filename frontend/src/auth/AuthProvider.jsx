@@ -8,7 +8,6 @@ const AuthProvider = ({ children }) => {
   const [sidebar, setSidebar] = useState(false);
 
   const showSidebar = () => {
-    console.log("HERE");
     setSidebar(!sidebar);
   };
 
@@ -20,10 +19,13 @@ const AuthProvider = ({ children }) => {
         // "X-CSRFToken": csrfToken,
       },
     });
+    // console.log(response);
     const json = await response.json();
-    if (!json) {
+    // console.log(json);
+    if (!json.email) {
       setUser("");
     } else {
+      // console.log("hj");
       setUser(json);
     }
   };

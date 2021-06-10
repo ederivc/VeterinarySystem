@@ -48,7 +48,6 @@ const LoginPage = () => {
       usera: form["email"],
       password: form["password"],
     });
-    console.log("mia");
     getUser(response);
   };
 
@@ -85,7 +84,7 @@ const LoginPage = () => {
         </Form>
         <Container className={styles.imgContainer}>
           <img
-            src="https://www.pinclipart.com/picdir/middle/547-5477824_veterinarian-clipart-love-transparent-background-vet-clipart-png.png"
+            src="https://images-ext-1.discordapp.net/external/wgrUZvUhFjhapHFGUbFuDFgKS2a88VlwDgHS8G76dBA/https/www.pngkey.com/png/full/399-3993746_vet-png-veterinary-doctor-png.png"
             alt="img"
           ></img>
         </Container>

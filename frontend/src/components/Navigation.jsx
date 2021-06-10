@@ -20,7 +20,8 @@ const Navigation = () => {
       expand="lg"
       variant="dark"
       bg="dark"
-      // className={styles.navbar}
+      // fixed="top"
+      className={styles.navbar}
     >
       <Navbar.Brand as={Link} to="/" className={styles.brand}>
         Veterinary

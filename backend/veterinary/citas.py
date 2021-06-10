@@ -1,10 +1,15 @@
 from datetime import date, datetime
 import functools
 
-from veterinary.helpers.citasHelpers import verify_appointment
+from veterinary.helpers.citasHelpers import (
+  verify_appointment, query_appointment, insert_appointment_user,
+   insert_appointment
+)
+# delete_user_appointment
 
 from flask import (
-    Blueprint, flash, g, redirect, render_template, request, session, url_for, abort
+    Blueprint, flash, g, redirect, render_template, request, session, url_for, abort,
+    jsonify, make_response
 )
 from werkzeug.security import check_password_hash, generate_password_hash
 
@@ -24,17 +29,69 @@ def create_cita():
         error = None
 
         if session:
+          print("user i session")
           verify_appointment(db, _datetime, request.json, "AppointmentUser")
         else:
+          print("user not in session")
           verify_appointment(db, _datetime, request.json, "AppointmentGuest")
 
         return {"dfdsf":"kkk"}
 
 
+@bp.route('/updateCita', methods=('GET', 'POST'))
+def update_cita():
+  if request.method == 'POST':
+      date = request.json["fecha"]
+      hour = request.json["hora"]
+      desc = request.json["descripcion"]
+      oldAppointment = request.json["oldAppointment"]
+        
+      _datetime = f"{date} {hour}"
+
+      db = get_db()
+      if query_appointment(db, _datetime, "Appointment"):
+          db.execute('DELETE FROM AppointmentUser WHERE appointment_id = ?', (oldAppointment["appointment_id"],)
+          )
+          db.commit()
+  
+          insert_appointment_user(db, g.user["user_id"], desc, _datetime)
+
+          db.execute(
+            'DELETE FROM Appointment WHERE appointment_date = ?',(_datetime,) 
+          )
+          db.commit()
+
+          insert_appointment(db, oldAppointment["appointment_date"])
+
+          return {"LISTO": "LISTO"}
+
+      response = make_response(jsonify(message="Ha ocurrido un error, verifica tus datos."), 400)
+      abort(response)
+
+
+@bp.route('/deleteAppointment/<id>/', methods=["DELETE"])
+def delete_appointment(id):
+    db = get_db()
+
+    _date = db.execute(
+      'SELECT appointment_date FROM AppointmentUser WHERE appointment_id = ?', (id,)
+    ).fetchone()
+
+    db.execute(
+      'INSERT INTO Appointment (appointment_date) VALUES (?)',(_date["appointment_date"],)
+    )
+    db.commit()
+
+    db.execute('DELETE FROM AppointmentUser WHERE appointment_id = ?', (id,)
+    )
+    db.commit()
+    
+    return {"DELETE": "DELETE"}
+
+
 @bp.route('/getDates', methods=('GET', 'POST'))
 def get_dates():
   db = get_db()
-  error = None 
   dates = db.execute(
       'SELECT appointment_date FROM Appointment'
   ).fetchall()
@@ -51,9 +108,7 @@ def get_appointment():
   db = get_db()
   error = None 
   if g.user:
-    print("jahdkjhad")
     id = g.user["user_id"]
-    print(id)
     appointments = db.execute(
         'SELECT * FROM AppointmentUser WHERE user_id = ?', (id,)
     ).fetchall()
@@ -61,8 +116,8 @@ def get_appointment():
     _dict = {}
     for i, appointment in enumerate(appointments):
       _dict[i] = appointment
-    print(appointments)
-    print(_dict)
+    # print(appointments)
+    # print(_dict)
 
   return _dict
 

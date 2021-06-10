@@ -8,11 +8,8 @@ def query_appointment(db, _datetime, table):
     request = db.execute(f'SELECT * FROM {table} WHERE appointment_date = ?', (_datetime,)
     ).fetchone()
     if request is None:
-        # The is not datetime
-      print("NO date here")
       return False
     else:
-      print("We have date here")
       return True
 
 def removeCita(db, _datetime):
@@ -21,10 +18,27 @@ def removeCita(db, _datetime):
   )
   db.commit()
 
-def insert_cita(db, request, _datetime):
-  # User id,  desc, date
+def delete_user_appointment(db, table, field, value):
+  db.execute(
+      'DELETE FROM ? WHERE ? = ?',(table, field, value) 
+  )
+  db.commit()
 
+def insert_appointment_user(db, id, desc, _date):
+    db.execute(            
+      'INSERT INTO AppointmentUser (user_id, descripcion, appointment_date) VALUES (?, ?, ?)',
+    (id, desc, _date))
+    db.commit()
+  
+def insert_appointment(db, _date):
+    db.execute(
+        'INSERT INTO Appointment (appointment_date) VALUES (?)',
+    (_date,))
+    db.commit() 
+
+def insert_cita(db, request, _datetime):
     for req in request:
+      print(request[req])
       if request[req] is None or request[req] == "" or request[req] == " ":
           response = make_response(jsonify(message="Ha ocurrido un error, verifica tus datos."), 400)
           abort(response)
@@ -33,7 +47,6 @@ def insert_cita(db, request, _datetime):
     desc = request["descripcion"]
     
     if g.user:
-        print("yes, user")
         email = g.user["email"]
 
         user_id = get_id(db, "user_id", "User", email)
@@ -45,7 +58,9 @@ def insert_cita(db, request, _datetime):
         removeCita(db, _datetime)
 
         print("APPOINTMENT CREATED")
+
     else:
+        print("we dont ave user")
         name = request["nombre"]
         last_name = request["apellidos"]
         phone = request["telefono"]
@@ -59,7 +74,6 @@ def insert_cita(db, request, _datetime):
               'INSERT INTO Guest (guest_name, guest_lastName, email, phone) VALUES (?, ?, ?, ?)',
               (name, last_name, email, phone))
             db.commit()
-            print("GUEST ADDED")
 
             guest_id = get_id(db, "guest_id", "Guest", email)
 
@@ -72,10 +86,8 @@ def insert_cita(db, request, _datetime):
           except:
             response = make_response(jsonify(message="Ha ocurrido un error, verifica tus datos."), 400)
             abort(response)
-          # print(guest_id)
 
         else:
-            print("here")
             db.execute(
             'INSERT INTO AppointmentGuest (guest_id, appointment_date, descripcion) VALUES (?, ?, ?)',
             (guest_id['guest_id'], _datetime, desc))

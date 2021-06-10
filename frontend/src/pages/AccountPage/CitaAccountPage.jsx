@@ -1,13 +1,35 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Card, Col, Container, Row } from "react-bootstrap";
+import { Button, Card, Col, Container, Row } from "react-bootstrap";
+import { SidebarContext } from "../../components/BaseAccountPage";
+import {
+  Alerts,
+  CustomModal,
+  ModalDelete,
+} from "../../components/FormUtilities";
 import styles from "./AccountPage.module.css";
-import { SidebarContext } from "./BaseAccountPage";
 
-const CitaAccountPage = ({ children }) => {
+const CitaAccountPage = () => {
   const [appointment, setAppointment] = useState();
   const [hasLoaded, setHasLoaded] = useState();
+  const [show, setShow] = useState(false);
+  const [pickAppointment, setPickAppointment] = useState();
+  const [deleteAppointment, setDeleteAppointment] = useState(false);
+
+  const [alert, setAlert] = useState();
+  const [alertMsg, setAlertMsg] = useState();
+  const [alertVariant, setAlertVariant] = useState();
 
   const { sidebar, setSidebar } = useContext(SidebarContext);
+
+  const handleShow = (appointmentID) => {
+    setShow(!show);
+    setPickAppointment(appointmentID);
+  };
+
+  const handleDelete = (appointmentID) => {
+    setDeleteAppointment(!deleteAppointment);
+    setPickAppointment(appointmentID);
+  };
 
   const fetchAppointments = async () => {
     const response = await fetch("/citas/getAppointment");
@@ -19,7 +41,7 @@ const CitaAccountPage = ({ children }) => {
   useEffect(() => {
     fetchAppointments();
     setSidebar(true);
-  }, [setSidebar]);
+  }, [setSidebar, pickAppointment]);
 
   return (
     <Container fluid>
@@ -32,6 +54,7 @@ const CitaAccountPage = ({ children }) => {
       >
         Citas
       </h1>
+      {alert ? Alerts(alertMsg, alertVariant) : null}
       <Row
         className={
           sidebar
@@ -42,18 +65,29 @@ const CitaAccountPage = ({ children }) => {
         {hasLoaded ? (
           Object.keys(appointment).map((i, cont) => {
             return (
-              <Col
-                lg={3}
-                md={4}
-                className="p-2"
-                key={appointment[i].appointment_id}
-              >
-                <Card>
+              <Col md={4} className="p-2" key={appointment[i].appointment_id}>
+                <Card className={styles.card}>
                   <Card.Header>{`Cita: ${cont + 1}`}</Card.Header>
                   <Card.Body>
                     <Card.Title>{`Fecha: ${appointment[i].appointment_date}`}</Card.Title>
-                    <Card.Text>{appointment[i].descripcion}</Card.Text>
+                    <Card.Text>{`Descripción: ${appointment[i].descripcion}`}</Card.Text>
                   </Card.Body>
+                  <Row className={styles.rowContainer}>
+                    <Button
+                      variant="warning"
+                      size="lg"
+                      onClick={() => handleShow(appointment[i])}
+                    >
+                      Editar
+                    </Button>
+                    <Button
+                      variant="danger"
+                      size="lg"
+                      onClick={() => handleDelete(appointment[i])}
+                    >
+                      Eliminar
+                    </Button>
+                  </Row>
                 </Card>
               </Col>
             );
@@ -61,6 +95,27 @@ const CitaAccountPage = ({ children }) => {
         ) : (
           <p>asdasd</p>
         )}
+        {show ? (
+          <CustomModal
+            show={show}
+            handleClose={handleShow}
+            appointments={appointment}
+            pickAppointment={pickAppointment}
+            setAlert={setAlert}
+            setAlertMsg={setAlertMsg}
+            setAlertVariant={setAlertVariant}
+          />
+        ) : null}
+        {deleteAppointment ? (
+          <ModalDelete
+            show={deleteAppointment}
+            handleClose={handleDelete}
+            pickAppointment={pickAppointment}
+            setAlert={setAlert}
+            setAlertMsg={setAlertMsg}
+            setAlertVariant={setAlertVariant}
+          />
+        ) : null}
       </Row>
     </Container>
   );

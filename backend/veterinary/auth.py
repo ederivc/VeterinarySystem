@@ -50,12 +50,13 @@ def sessions():
     if 'user_id' in session:
         return g.user
     else:
-        return {"asd": "klj"}
+        return {"Error": "Not user in session"}
 
 
 @bp.route('/logout')
 def logout():
     session.clear()
+    print(g.user)
     return {"asds": "asdsad"}
 
 

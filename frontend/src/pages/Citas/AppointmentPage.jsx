@@ -13,6 +13,7 @@ const AppointmentPage = () => {
   const [alertMsg, setAlertMsg] = useState();
   const [alertVariant, setAlertVariant] = useState();
   // const [selectedValue, setSelectedValue] = useState();
+  // const isMountedRef = useRef(true);
 
   const [appointment, setAppointment] = useState({
     nombre: "",
@@ -24,8 +25,15 @@ const AppointmentPage = () => {
     desc: "",
   });
 
+  const getDates = async () => {
+    const res = await APICitas.getDates();
+    // if (isMountedRef.current) {
+    setDates(res);
+    setHasLoaded(true);
+    // }
+  };
+
   useEffect(() => {
-    console.log(user);
     setAppointment({
       nombre: "",
       apellidos: "",
@@ -35,7 +43,15 @@ const AppointmentPage = () => {
       hora: "",
       desc: "",
     });
-    APICitas.getDates(setDates, setHasLoaded);
+    getDates();
+    // return () => {
+    //   isMountedRef
+    // }
+    // return () => {
+    //   setDates({});
+    //   setHasLoaded({});
+    //   setAppointment({});
+    // };
   }, [user, hasLoaded]);
 
   const handleChange = (e) => {
@@ -78,7 +94,7 @@ const AppointmentPage = () => {
       nombre: "",
       apellidos: "",
       telefono: "",
-      email: "",
+      email: user?.email ?? "",
       fecha: "",
       hora: "",
       desc: "",

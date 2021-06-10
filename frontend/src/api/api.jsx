@@ -40,12 +40,10 @@ class APICitas {
       body: JSON.stringify(data),
     });
     const json = await response.json();
-    // console.log(json);
-    // console.log(response);
     return [json, response];
   }
 
-  static async getDates(setDates, setHasLoaded) {
+  static async getDates() {
     const response = await fetch("/citas/getDates", {
       method: "GET",
       headers: {
@@ -53,9 +51,103 @@ class APICitas {
       },
     });
     const json = await response.json();
-    setDates(json);
-    setHasLoaded(true);
+    return json;
+    // setDates(json);
+    // setHasLoaded(true);
+  }
+
+  static async updateCita(data) {
+    const csrfToken = getCookie("csrftoken");
+    const response = await fetch("/citas/updateCita", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRFToken": csrfToken,
+      },
+      body: JSON.stringify(data),
+    });
+    const json = await response.json();
+    return [json, response];
+  }
+
+  static async deleteCita({ appointment }) {
+    const csrfToken = getCookie("csrftoken");
+    const response = await fetch(
+      `/citas/deleteAppointment/${appointment.appointment_id}/`,
+      {
+        method: "DELETE",
+        headers: {
+          "X-CSRFToken": csrfToken,
+        },
+      }
+    );
+    console.log(response);
+    const json = await response.json();
+    return [json, response];
   }
 }
 
-export { APIUsers, APICitas };
+class APIProducts {
+  static async createProduct(data) {
+    const csrfToken = getCookie("csrftoken");
+    const response = await fetch("/products/createProduct", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRFToken": csrfToken,
+      },
+      body: JSON.stringify(data),
+    });
+    const json = await response.json();
+    return [json, response];
+  }
+
+  static async updateProduct(data) {
+    const csrfToken = getCookie("csrftoken");
+    const response = await fetch("/products/updateProduct", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRFToken": csrfToken,
+      },
+      body: JSON.stringify(data),
+    });
+    const json = await response.json();
+    return [json, response];
+  }
+
+  static async deleteProduct({ product }) {
+    const csrfToken = getCookie("csrftoken");
+    const response = await fetch(
+      `/products/deleteProduct/${product.product_id}/`,
+      {
+        method: "DELETE",
+        headers: {
+          "X-CSRFToken": csrfToken,
+        },
+      }
+    );
+    const json = await response.json();
+    return [json, response];
+  }
+}
+
+class APIAnimals {
+  static async createAnimal(data) {
+    const csrfToken = getCookie("csrftoken");
+    const response = await fetch("/animals/createAnimal", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRFToken": csrfToken,
+      },
+      body: JSON.stringify(data),
+    });
+    const json = await response.json();
+    return [json, response];
+  }
+}
+
+const IMG_URL = "http://localhost:5000/static/img/products/";
+
+export { APIUsers, APICitas, APIProducts, APIAnimals, IMG_URL };

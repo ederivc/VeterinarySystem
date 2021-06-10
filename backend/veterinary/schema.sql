@@ -4,8 +4,8 @@ DROP TABLE IF EXISTS AppointmentUser;
 DROP TABLE IF EXISTS AppointmentGuest;
 DROP TABLE IF EXISTS Admin;
 DROP TABLE IF EXISTS Guest;
--- DROP TABLE IF EXISTS Guest;
--- DROP TABLE IF EXISTS Admin;
+DROP TABLE IF EXISTS Products;
+DROP TABLE IF EXISTS Animal;
 
 CREATE TABLE User (
     user_id INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -35,8 +35,7 @@ CREATE TABLE Guest (
   guest_name VARCHAR(255) NOT NULL,
   guest_lastName VARCHAR(255) NOT NULL,
   email VARCHAR(255) NOT NULL,
-  phone VARCHAR(255) NOT NULL,
-    status VARCHAR(150) NOT NULL
+  phone VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE Appointment (
@@ -44,7 +43,7 @@ CREATE TABLE Appointment (
   appointment_date DATETIME
 );
 
--- INSERT INTO Appointment (appointment_date) VALUES (2021-05-29 09:30);
+-- INSERT INTO Appointment (appointment_date) VALUES ("2021-05-29 09:30 am");
 
 CREATE TABLE AppointmentUser (
   appointment_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
@@ -66,12 +65,27 @@ CREATE TABLE AppointmentGuest(
   FOREIGN KEY (appointment_id) REFERENCES Appointment(appointment_id)
 );
 
--- CREATE TABLE Appointment (
---   appointment_id INTEGER PRIMARY KEY AUTOINCREMENT,
---   user_id INTEGER NOT NULL,
---   appointment_date DATETIME,
---   FOREIGN KEY (user_id) REFERENCES User(user_id)
--- );
+CREATE TABLE Products(
+  product_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+  name VARCHAR(100) NOT NULL UNIQUE,
+  cantidad INTEGER NOT NULL,
+  price REAL NOT NULL,
+  descripcion VARCHAR(255) NOT NULL,
+  img VARCHAR(255) NOT NULL,
+  marca VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE Animal(
+  animal_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+  nombre_animal VARCHAR(255) NOT NULL UNIQUE,
+  descripcion VARCHAR(255) NOT NULL UNIQUE,
+  precio REAL,
+  edad INTEGER,
+  img VARCHAR(255) NOT NULL,
+  tipo VARCHAR(255)
+);
+
+-- INSERT INTO Products (name, cantidad, price, descripcion) VALUES ("prod1", 20, 50.99, "Descripcion");
 
 
--- INSERT INTO User (email, password, first_name, last_name, phone) VALUES ("user", "pass", "first", "last", "3432434")
+-- INSERT INTO User (email, password, first_name, last_name, phone, status) VALUES ("admin", "pass", "first", "last", "132434", "Admin");

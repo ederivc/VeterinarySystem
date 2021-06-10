@@ -38,6 +38,12 @@ def create_app(test_config=None):
     from . import citas
     app.register_blueprint(citas.bp)
 
+    from . import products
+    app.register_blueprint(products.bp)
+    
+    from . import animals
+    app.register_blueprint(animals.bp)
+
     # from .admin import admin 
 
     return app

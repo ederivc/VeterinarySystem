@@ -1,0 +1,21 @@
+.sectionSubtitle {
+  font-weight: 500;
+  font-size: 1.3rem;
+  margin-right: 2rem;
+  margin-bottom: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+.input {
+  height: 3rem !important;
+}
+
+.wrapper {
+  padding: 2rem;
+  border: 1px solid red;
+  min-height: 90vh;
+  /* background-color: red; */
+  /* background-image: url("https://wallpapercave.com/wp/wp3123707.jpg");
+  background-size: cover; */
+  /* background-color: red; */
+}
