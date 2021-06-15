@@ -9,4 +9,4 @@ Legend
 [] Validate citas inputs
 [] Add default select value
 [] Fix login redirect
-[] Fix verify AppointmentUser query when creating an appointment in order to avoid an extra query
+[] Fix user registration validation

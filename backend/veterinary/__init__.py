@@ -44,6 +44,9 @@ def create_app(test_config=None):
     from . import animals
     app.register_blueprint(animals.bp)
 
+    from . import users
+    app.register_blueprint(users.bp)
+
     # from .admin import admin 
 
     return app

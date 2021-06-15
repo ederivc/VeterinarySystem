@@ -9,7 +9,6 @@ from flask import (
 )
 from werkzeug.security import check_password_hash, generate_password_hash
 from pathlib import Path
-from PIL import Image
 
 from veterinary.db import get_db
 
@@ -129,6 +128,7 @@ def update_product_route():
       abort(response)
 
     return {"ACTUALIZADO": "ACTUALIZADO"}
+    
 
 @bp.route('/deleteProduct/<id>/', methods=["DELETE"])
 def delete_product(id):

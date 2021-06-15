@@ -19,8 +19,7 @@
 
 .wrapper {
   padding: 2rem;
-  /* background-image: url("https://wallpapercave.com/wp/wp3123707.jpg"); */
-  background-size: cover;
+  background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
 }
 
 /* .wrapper::before {

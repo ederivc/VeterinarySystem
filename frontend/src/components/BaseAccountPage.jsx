@@ -49,7 +49,11 @@ const BaseAccountPage = () => {
                 ></box-icon>
               </Link>
             </li>
-            {user.status === "User" ? <UserNavLinks /> : <AdminAccountPage />}
+            {user.status === "Cliente" ? (
+              <UserNavLinks />
+            ) : (
+              <AdminAccountPage />
+            )}
           </ul>
         </nav>
         <AccountRouter path={path} />

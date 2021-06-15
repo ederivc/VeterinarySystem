@@ -26,6 +26,46 @@ class APIUsers {
     });
     return response;
   }
+
+  static async createUser(data) {
+    const csrfToken = getCookie("csrftoken");
+    const response = await fetch("/users/createUser", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRFToken": csrfToken,
+      },
+      body: JSON.stringify(data),
+    });
+    const json = await response.json();
+    return [json, response];
+  }
+
+  static async deleteUser({ user }) {
+    const csrfToken = getCookie("csrftoken");
+    const response = await fetch(`/users/deleteUser/${user.user_id}/`, {
+      method: "DELETE",
+      headers: {
+        "X-CSRFToken": csrfToken,
+      },
+    });
+    const json = await response.json();
+    return [json, response];
+  }
+
+  static async updateUser(data) {
+    const csrfToken = getCookie("csrftoken");
+    const response = await fetch("/users/updateUser", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRFToken": csrfToken,
+      },
+      body: JSON.stringify(data),
+    });
+    const json = await response.json();
+    return [json, response];
+  }
 }
 
 class APICitas {
@@ -52,8 +92,6 @@ class APICitas {
     });
     const json = await response.json();
     return json;
-    // setDates(json);
-    // setHasLoaded(true);
   }
 
   static async updateCita(data) {

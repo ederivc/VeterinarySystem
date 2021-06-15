@@ -27,11 +27,13 @@
 
 .content span {
   color: #333;
+  color: #fff;
   font-size: 2rem;
 }
 
 .content h3 {
   color: #333;
+  color: #fff;
   font-size: 3rem;
   line-height: 4rem;
 }

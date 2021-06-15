@@ -3,7 +3,6 @@ import AppointmentPage from "../pages/Citas/AppointmentPage";
 import CartPage from "../pages/CartPage";
 import HomePage from "../pages/HomePage/HomePage";
 import LoginPage from "../pages/Login/LoginPage";
-import RegisterPage from "../pages/RegisterPage";
 import NotFoundPage from "../pages/NotFoundPage";
 import Layout from "../layouts/Layout";
 import ProductsPage from "../pages/ProductsPage/ProductsPage";
@@ -11,6 +10,7 @@ import AdminPage from "../pages/Admin/AdminPage";
 import PrivateRoute from "./PrivateRoute";
 import BaseAccountPage from "../components/BaseAccountPage";
 import AnimalsPage from "../pages/Animals/AnimalsPage";
+import RegisterPage from "../pages/Register/RegisterPage";
 
 const AppRouter = () => {
   return (

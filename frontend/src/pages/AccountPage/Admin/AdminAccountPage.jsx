@@ -15,25 +15,25 @@ const AdminAccountPage = () => {
       <SidebarLink
         url={`${url}/admin/registro/usuario`}
         iconType="solid"
-        iconName="home"
+        iconName="user-rectangle"
         linkText="Usuarios"
       />
       <SidebarLink
         url={`${url}/admin/registro/citas`}
-        iconType="solid"
-        iconName="home"
+        iconType=""
+        iconName="money"
         linkText="Citas"
       />
       <SidebarLink
         url={`${url}/admin/registro/productos`}
         iconType="solid"
-        iconName="home"
+        iconName="box"
         linkText="Productos"
       />
       <SidebarLink
         url={`${url}/admin/registro/animales`}
-        iconType="solid"
-        iconName="home"
+        iconType="logo"
+        iconName="baidu"
         linkText="Animales"
       />
 
@@ -41,25 +41,25 @@ const AdminAccountPage = () => {
       <SidebarLink
         url={`${url}/admin/gestion/usuario`}
         iconType="solid"
-        iconName="home"
-        linkText="Animales"
+        iconName="user-account"
+        linkText="Usuarios"
       />
       <SidebarLink
         url={`${url}/admin/gestion/citas`}
         iconType="solid"
-        iconName="home"
+        iconName="book-content"
         linkText="Citas"
       />
       <SidebarLink
         url={`${url}/admin/gestion/productos`}
         iconType="solid"
-        iconName="home"
+        iconName="dashboard"
         linkText="Productos"
       />
       <SidebarLink
         url={`${url}/admin/gestion/animales`}
         iconType="solid"
-        iconName="home"
+        iconName="bone"
         linkText="Animales"
       />
     </>

@@ -4,6 +4,7 @@ import RegisterAnimal from "../pages/AccountPage/Admin/Registros/Animals/Registe
 import CitaAccountPage from "../pages/AccountPage/CitaAccountPage";
 import WelcomeAccountPage from "../pages/AccountPage/WelcomeAccountPage";
 import GestionsProducts from "../pages/AccountPage/Admin/Gestion/Productos/GestionsProducts";
+import GestionUsuarios from "../pages/AccountPage/Admin/Gestion/Usuarios/GestionUsuarios";
 
 const AccountRouter = ({ path }) => {
   return (
@@ -30,7 +31,7 @@ const AccountRouter = ({ path }) => {
         <RegisterAnimal />
       </Route>
       <Route path={`${path}/admin/gestion/usuario`}>
-        <h1>Gestion usuario</h1>
+        <GestionUsuarios />
       </Route>
       <Route path={`${path}/admin/gestion/citas`}>
         <h1>Gestion cita</h1>

@@ -44,6 +44,7 @@ def login():
             # print("login response", user_request)
             return user_request
 
+    return "Login"
 
 @bp.route('/session', methods=['GET'])
 def sessions():

@@ -2,7 +2,7 @@ from flask import (
   g, abort, jsonify, make_response
 )
 
-from veterinary.helpers.users import get_id
+from veterinary.helpers.usersInfo import get_id
 
 def query_appointment(db, _datetime, table):
     request = db.execute(f'SELECT * FROM {table} WHERE appointment_date = ?', (_datetime,)
