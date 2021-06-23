@@ -63,7 +63,7 @@ const CustomModal = ({
       fecha: formData.fecha,
       hora: formData.hora,
       descripcion: formData.desc,
-      oldAppointment: pickAppointment,
+      appointmentId: pickAppointment.appointment_id,
     });
     checkResponse(res);
   };
@@ -110,7 +110,23 @@ const CustomModal = ({
               value={formData.hora}
               onChange={handleChange}
             >
-              <option value={-1}>{formData.hora}</option>
+              <option disabled value={-1}>
+                {pickAppointment.appointment_date
+                  .split(" ")
+                  .slice(1)
+                  .toString()
+                  .replace(",", " ")}
+              </option>
+              <option>10:00 am</option>
+              <option>11:00 am</option>
+              <option>12:00 pm</option>
+              <option>13:00 pm</option>
+              <option>14:00 pm</option>
+              <option>15:00 pm</option>
+              <option>16:00 pm</option>
+              <option>17:00 pm</option>
+              <option>18:00 pm</option>
+              {/* <option value={-1}>{formData.hora}</option>
               {hasLoaded ? (
                 Object.keys(dates).map((key) => (
                   <option key={key}>
@@ -123,7 +139,7 @@ const CustomModal = ({
                 ))
               ) : (
                 <option>Loading...</option>
-              )}
+              )} */}
             </Form.Control>
           </Form.Group>
           <Form.Group className="mb-3" controlId="formDesc">

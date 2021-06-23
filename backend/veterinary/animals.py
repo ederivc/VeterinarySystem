@@ -9,7 +9,6 @@ from flask import (
 )
 from werkzeug.security import check_password_hash, generate_password_hash
 from pathlib import Path
-from PIL import Image
 
 from veterinary.db import get_db
 

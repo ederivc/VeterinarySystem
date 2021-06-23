@@ -1,3 +1,5 @@
+import random
+
 from flask import (
     Blueprint, flash, g, json, request, session, abort,
     jsonify, make_response
@@ -14,11 +16,31 @@ def insert_user(db, request):
     email = request["email"]
     telefono = request["telefono"]
     contraseña = request["contraseña"]
+    
+    id = "US"
+
+    if g.user:
+      status = request["status"]
+
+      if status == "Administrador":
+        id = "AD"
+
+    else: 
+      status = "Cliente"
+
+    numbers = []
+    for i in range(4):
+      numbers.append(random.randint(0, 9))
+
+    for number in numbers:
+      id += str(number ) 
+
     db.execute(
-        'INSERT INTO User (email, password, first_name, last_name, phone, status) VALUES (?, ?, ?, ?, ?, ?)',
-    (email, contraseña, nombre, apellidos, telefono, "User")
+        'INSERT INTO User (user_id, email, password, first_name, last_name, phone, status) VALUES (?, ?, ?, ?, ?, ?, ?)',
+    (id, email, contraseña, nombre, apellidos, telefono, status)
       )
     db.commit()
+
 
 def update_user(request, db):
     id = request["id"]
@@ -33,6 +55,7 @@ def update_user(request, db):
     )
     db.commit() 
 
+
 @bp.route('/createUser', methods=('GET', 'POST'))
 def create_user():
     if request.method == "POST":
@@ -42,7 +65,6 @@ def create_user():
       db_email = db.execute(
           'SELECT email FROM User WHERE email = ?', (email,)
       ).fetchone()
-      print(db_email)
 
       if db_email is None:
           insert_user(db, request.json)
@@ -66,6 +88,7 @@ def get_user():
       _dict[i] = user
     
     return _dict
+
 
 @bp.route('/updateUser', methods=('GET', 'POST'))
 def update_user_route():
@@ -94,7 +117,7 @@ def update_user_route():
 
 @bp.route('/deleteUser/<id>/', methods=["DELETE"])
 def delete_user(id):
-    if g.user["user_id"] == int(id):
+    if g.user["user_id"] == id:
         response = make_response(jsonify(message="No puedes eliminarte a ti mismo"), 400)
         abort(response)
     else:

@@ -123,6 +123,34 @@ class APICitas {
     const json = await response.json();
     return [json, response];
   }
+
+  static async deleteCitaNotification({ cita }) {
+    const csrfToken = getCookie("csrftoken");
+    const response = await fetch("/citas/deleteAppointmentNotification", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRFToken": csrfToken,
+      },
+      body: JSON.stringify(cita),
+    });
+    const json = await response.json();
+    return [json, response];
+  }
+
+  static async ApproveCita(data) {
+    const csrfToken = getCookie("csrftoken");
+    const response = await fetch("/citas/approveCita", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRFToken": csrfToken,
+      },
+      body: JSON.stringify(data),
+    });
+    const json = await response.json();
+    return [json, response];
+  }
 }
 
 class APIProducts {

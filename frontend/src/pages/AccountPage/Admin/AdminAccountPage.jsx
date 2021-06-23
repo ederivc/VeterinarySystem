@@ -1,16 +1,22 @@
-import { useRouteMatch } from "react-router-dom";
+import { Link, useRouteMatch } from "react-router-dom";
 import { SidebarLink } from "../../../components/AccountUtilities";
 
 const AdminAccountPage = () => {
   const { url } = useRouteMatch();
   return (
     <>
-      <SidebarLink
+      {/* <SidebarLink
         url={`${url}`}
         iconType="solid"
         iconName="home"
-        linkText="Inicio"
-      />
+        linkText="INICIO"
+      /> */}
+      <Link to={url}>
+        <div className="d-flex justify-content-center">
+          <box-icon type="solid" name="home"></box-icon>
+          <h4 className="">Inicio</h4>
+        </div>
+      </Link>
       <h5>Registrar</h5>
       <SidebarLink
         url={`${url}/admin/registro/usuario`}
@@ -45,10 +51,16 @@ const AdminAccountPage = () => {
         linkText="Usuarios"
       />
       <SidebarLink
-        url={`${url}/admin/gestion/citas`}
+        url={`${url}/admin/gestion/citas/pendientes`}
         iconType="solid"
-        iconName="book-content"
-        linkText="Citas"
+        iconName="calendar-edit"
+        linkText="Citas Pendientes"
+      />
+      <SidebarLink
+        url={`${url}/admin/gestion/citas/aprobadas`}
+        iconType="solid"
+        iconName="calendar-check"
+        linkText="Citas Aprobadas"
       />
       <SidebarLink
         url={`${url}/admin/gestion/productos`}

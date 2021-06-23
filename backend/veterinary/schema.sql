@@ -8,7 +8,7 @@ DROP TABLE IF EXISTS Products;
 DROP TABLE IF EXISTS Animal;
 
 CREATE TABLE User (
-    user_id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id VARCHAR(255) PRIMARY KEY UNIQUE NOT NULL,
     email VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(128) NOT NULL,
     first_name VARCHAR(150) NOT NULL,
@@ -31,7 +31,7 @@ CREATE TABLE Admin (
 );
 
 CREATE TABLE Guest (
-  guest_id INTEGER PRIMARY KEY AUTOINCREMENT,
+  guest_id VARCHAR(255) PRIMARY KEY UNIQUE NOT NULL,
   guest_name VARCHAR(255) NOT NULL,
   guest_lastName VARCHAR(255) NOT NULL,
   email VARCHAR(255) NOT NULL,
@@ -46,10 +46,13 @@ CREATE TABLE Appointment (
 -- INSERT INTO Appointment (appointment_date) VALUES ("2021-05-29 09:30 am");
 
 CREATE TABLE AppointmentUser (
-  appointment_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-  user_id INTEGER NOT NULL,
+  appointment_id VARCHAR(255) NOT NULL PRIMARY KEY UNIQUE,
+  user_id VARCHAR(255) NOT NULL,
+  user_name VARCHAR(100),
+  user_email VARCHAR(100),
   descripcion VARCHAR(100),
-  appointment_date DATETIME NOT NULL UNIQUE,
+  appointment_date DATETIME NOT NULL,
+  approved INTEGER,
   FOREIGN KEY (user_id) REFERENCES User(user_id),
   FOREIGN KEY (appointment_id) REFERENCES Appointment(appointment_id)
 );
@@ -57,10 +60,13 @@ CREATE TABLE AppointmentUser (
 -- INSERT INTO AppointmentUser (user_id, descripcion, appointment_date) VALUES (10, 10, 2021-05-29 09:30);
 
 CREATE TABLE AppointmentGuest(
-  appointment_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-  guest_id INTEGER NOT NULL,
-  appointment_date DATETIME NOT NULL UNIQUE,
+  appointment_id VARCHAR(255) NOT NULL PRIMARY KEY UNIQUE,
+  guest_id VARCHAR(255) NOT NULL,
+  guest_name VARCHAR(100),
+  guest_email VARCHAR(100),
+  appointment_date DATETIME NOT NULL,
   descripcion VARCHAR(100),
+  approved INTEGER,
   FOREIGN KEY (guest_id) REFERENCES Guest(guest_id),
   FOREIGN KEY (appointment_id) REFERENCES Appointment(appointment_id)
 );

@@ -35,7 +35,11 @@ const CitaAccountPage = () => {
     const response = await fetch("/citas/getAppointment");
     const json = await response.json();
     setAppointment(json);
-    setHasLoaded(true);
+    if (Object.keys(json).length === 0) {
+      setHasLoaded(false);
+    } else {
+      setHasLoaded(true);
+    }
   };
 
   useEffect(() => {

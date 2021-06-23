@@ -1,15 +1,31 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { IMG_URL } from "../../api/api";
+import { CartContext } from "../../layouts/Layout";
 import styles from "./ProductsPage.module.css";
 
 const ProductsPage = () => {
   const [products, setProducts] = useState();
+  const { cart, setCard, addedProduct, setAddedProduct } =
+    useContext(CartContext);
+  const [newArr, setNewArr] = useState([]);
 
   const getProducts = async () => {
     const res = await fetch("/products/getProducts");
     const json = await res.json();
     setProducts(json);
+  };
+
+  const addProductCard = (product) => {
+    setCard(cart + 1);
+    console.log("++++");
+    if (newArr.length === 0) {
+      newArr.push(product);
+    } else {
+      console.log("not empty");
+      setNewArr([...newArr, product]);
+    }
+    console.log(newArr);
   };
 
   useEffect(() => {
@@ -39,6 +55,13 @@ const ProductsPage = () => {
                       {products[item].descripcion}
                       <div className={styles.price}>
                         {products[item].price} <span>$70.99</span>{" "}
+                      </div>
+                      <div className={styles.iconCont}>
+                        Agregar{" "}
+                        <i
+                          className="bx bxs-cart"
+                          onClick={() => addProductCard(products[item])}
+                        ></i>
                       </div>
                     </div>
                   </Col>

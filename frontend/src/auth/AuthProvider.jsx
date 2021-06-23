@@ -19,13 +19,10 @@ const AuthProvider = ({ children }) => {
         // "X-CSRFToken": csrfToken,
       },
     });
-    // console.log(response);
     const json = await response.json();
-    // console.log(json);
     if (!json.email) {
       setUser("");
     } else {
-      // console.log("hj");
       setUser(json);
     }
   };

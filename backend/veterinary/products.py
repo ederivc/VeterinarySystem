@@ -59,8 +59,6 @@ def save_image(img, filename):
     os.replace(actual_path, destination)
 
 
-def get_img_path(id):
-  pass
 
 @bp.route('/createProduct', methods=('GET', 'POST'))
 def create_product():
@@ -78,7 +76,7 @@ def create_product():
       response = make_response(jsonify(message="Ha ocurrido un error, verifica tus datos."), 400)
       abort(response)
 
-    return {"kasjdkasd":"alsjdl"}
+    return {"Created":"Created"}
 
 def update_product(request, db, filename):
     id = request["id"]

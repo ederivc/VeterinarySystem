@@ -1,10 +1,13 @@
+import { useContext } from "react";
 import { Navbar, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import useAuth from "../auth/useAuth";
+import { CartContext } from "../layouts/Layout";
 import styles from "./Navigation.module.css";
 
 const Navigation = () => {
   const { user, setUser } = useAuth();
+  const { cart } = useContext(CartContext);
 
   const handleLogOut = async (e) => {
     e.preventDefault();
@@ -40,19 +43,22 @@ const Navigation = () => {
           </Nav.Link>
         </Nav>
         <Nav>
-          <Nav.Link
-            as={Link}
-            to="/carrito"
-            className={styles.navLink}
-            title="Carrito de Compras"
-          >
-            <box-icon
-              name="cart"
-              type="solid"
-              size="md"
-              color="#fff"
-            ></box-icon>
-          </Nav.Link>
+          <div className={styles.cartCont}>
+            <span>{cart}</span>
+            <Nav.Link
+              as={Link}
+              to="/carrito"
+              className={styles.navLink}
+              title="Carrito de Compras"
+            >
+              <box-icon
+                name="cart"
+                type="solid"
+                size="md"
+                color="#fff"
+              ></box-icon>
+            </Nav.Link>
+          </div>
           {user ? null : (
             <Nav.Link
               as={Link}

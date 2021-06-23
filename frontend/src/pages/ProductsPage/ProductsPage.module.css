@@ -53,6 +53,22 @@
   text-decoration: line-through;
 }
 
-.row {
-  border: 1px solid red;
+.iconCont {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 0.5rem;
 }
+
+.iconCont i {
+  font-size: 1.8rem;
+  /* margin-left: 0.3rem; */
+}
+
+.iconCont i:hover {
+  cursor: pointer;
+}
+
+/* .cart-icon {
+  font-size: 2rem;
+} */

@@ -3,9 +3,8 @@ import functools
 
 from veterinary.helpers.citasHelpers import (
   verify_appointment, query_appointment, insert_appointment_user,
-   insert_appointment
+   insert_appointment, insert_cita
 )
-# delete_user_appointment
 
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for, abort,
@@ -29,11 +28,12 @@ def create_cita():
         error = None
 
         if session:
-          print("user i session")
-          verify_appointment(db, _datetime, request.json, "AppointmentUser")
+          print("user in session")
+          insert_cita(db, request.json, _datetime)
+
         else:
           print("user not in session")
-          verify_appointment(db, _datetime, request.json, "AppointmentGuest")
+          insert_cita(db, request.json, _datetime)
 
         return {"dfdsf":"kkk"}
 
@@ -44,29 +44,21 @@ def update_cita():
       date = request.json["fecha"]
       hour = request.json["hora"]
       desc = request.json["descripcion"]
-      oldAppointment = request.json["oldAppointment"]
-        
+      id = request.json["appointmentId"]
+
       _datetime = f"{date} {hour}"
 
       db = get_db()
-      if query_appointment(db, _datetime, "Appointment"):
-          db.execute('DELETE FROM AppointmentUser WHERE appointment_id = ?', (oldAppointment["appointment_id"],)
-          )
-          db.commit()
-  
-          insert_appointment_user(db, g.user["user_id"], desc, _datetime)
 
-          db.execute(
-            'DELETE FROM Appointment WHERE appointment_date = ?',(_datetime,) 
-          )
-          db.commit()
+      db.execute(
+        'UPDATE AppointmentUser SET descripcion = ?, appointment_date = ? WHERE appointment_id = ?',
+        (desc, _datetime, id))
+      db.commit()
+      
+      return {"LISTO": "LISTO"}
 
-          insert_appointment(db, oldAppointment["appointment_date"])
-
-          return {"LISTO": "LISTO"}
-
-      response = make_response(jsonify(message="Ha ocurrido un error, verifica tus datos."), 400)
-      abort(response)
+      # response = make_response(jsonify(message="Ha ocurrido un error, verifica tus datos."), 400)
+      # abort(response)
 
 
 @bp.route('/deleteAppointment/<id>/', methods=["DELETE"])
@@ -89,6 +81,46 @@ def delete_appointment(id):
     return {"DELETE": "DELETE"}
 
 
+@bp.route('/deleteAppointmentNotification', methods=["POST"])
+def delete_appointment_notification():
+  id = request.json["appointment_id"]
+  db = get_db()
+
+  if id[:2] == "UC":
+    db.execute(
+      'DELETE FROM AppointmentUser WHERE appointment_id = ?', (id,)
+    )
+    db.commit()
+  else:
+    db.execute(
+      'DELETE FROM AppointmentGuest WHERE appointment_id = ?', (id,)
+    )
+    db.commit()
+
+  return {"Remove": "Remove"}
+
+
+@bp.route('/approveCita', methods=('GET', 'POST'))
+def approve_cita():
+  _request = request.json["cita"]
+  
+  db = get_db()
+
+  if _request["appointment_id"][:2] == 'UC':
+    db.execute(
+      'UPDATE AppointmentUser SET approved = 1 WHERE appointment_id = ?',
+    (_request["appointment_id"],))
+    db.commit()
+    
+  else:
+    db.execute(
+      'UPDATE AppointmentGuest SET approved = 1 WHERE appointment_id = ?',
+    (_request["appointment_id"],))
+    db.commit()
+
+  return {"Approved": "Approved"}
+  
+
 @bp.route('/getDates', methods=('GET', 'POST'))
 def get_dates():
   db = get_db()
@@ -101,6 +133,45 @@ def get_dates():
     _dates[i] = list(date.values())[0]
     
   return _dates
+
+
+@bp.route('/getUserCita', methods=["GET"])
+def get_user_cita():
+  db = get_db()
+  user_citas = db.execute(
+    'SELECT * FROM AppointmentUser WHERE approved = 0'
+  ).fetchall()
+
+  guest_citas = db.execute(
+    'SELECT * FROM AppointmentGuest WHERE approved = 0'
+  ).fetchall()
+
+  user_citas.extend(guest_citas)
+
+  _dict = {}
+  for i, cita in enumerate(user_citas):
+    _dict[i] = cita
+
+  return _dict
+
+@bp.route('/getCitaAprobada', methods=["GET"])
+def get_user_cita_aprobada():
+  db = get_db()
+  user_citas = db.execute(
+    'SELECT * FROM AppointmentUser WHERE approved = 1'
+  ).fetchall()
+
+  guest_citas = db.execute(
+    'SELECT * FROM AppointmentGuest WHERE approved = 1'
+  ).fetchall()
+
+  user_citas.extend(guest_citas)
+
+  _dict = {}
+  for i, cita in enumerate(user_citas):
+    _dict[i] = cita
+
+  return _dict
 
 
 @bp.route('/getAppointment', methods=["GET"])
@@ -116,10 +187,10 @@ def get_appointment():
     _dict = {}
     for i, appointment in enumerate(appointments):
       _dict[i] = appointment
-    # print(appointments)
-    # print(_dict)
 
   return _dict
+
+
 
 @bp.before_app_request
 def load_logged_in_user():

@@ -37,3 +37,14 @@
   transform: scaleX(1);
   transform-origin: bottom left;
 }
+
+.cartCont {
+  display: flex;
+  align-items: center;
+  font-size: 1.4rem;
+  color: #fff;
+}
+
+.cartCont span {
+  margin-right: 0.5rem;
+}

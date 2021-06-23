@@ -7,8 +7,8 @@ import styles from "./AppointmentPage.module.css";
 
 const AppointmentPage = () => {
   const { user } = useAuth();
-  const [dates, setDates] = useState();
-  const [hasLoaded, setHasLoaded] = useState();
+  // const [dates, setDates] = useState();
+  // const [hasLoaded, setHasLoaded] = useState();
   const [alert, setAlert] = useState();
   const [alertMsg, setAlertMsg] = useState();
   const [alertVariant, setAlertVariant] = useState();
@@ -25,34 +25,25 @@ const AppointmentPage = () => {
     desc: "",
   });
 
-  const getDates = async () => {
-    const res = await APICitas.getDates();
-    // if (isMountedRef.current) {
-    setDates(res);
-    setHasLoaded(true);
-    // }
-  };
+  // const getDates = async () => {
+  //   const res = await APICitas.getDates();
+  //   setDates(res);
+  //   setHasLoaded(true);
+  // };
 
   useEffect(() => {
     setAppointment({
-      nombre: "",
-      apellidos: "",
-      telefono: "",
+      nombre: user?.first_name ?? "",
+      apellidos: user?.last_name ?? "",
+      telefono: user?.phone ?? "",
       email: user?.email ?? "",
       fecha: "",
       hora: "",
       desc: "",
     });
-    getDates();
-    // return () => {
-    //   isMountedRef
-    // }
-    // return () => {
-    //   setDates({});
-    //   setHasLoaded({});
-    //   setAppointment({});
-    // };
-  }, [user, hasLoaded]);
+    // getDates();
+  }, [user]);
+  // }, [user, hasLoaded]);
 
   const handleChange = (e) => {
     setAppointment({
@@ -91,15 +82,15 @@ const AppointmentPage = () => {
       descripcion: appointment["desc"],
     });
     setAppointment({
-      nombre: "",
-      apellidos: "",
-      telefono: "",
+      nombre: user?.first_name ?? "",
+      apellidos: user?.last_name ?? "",
+      telefono: user?.phone ?? "",
       email: user?.email ?? "",
       fecha: "",
       hora: "",
       desc: "",
     });
-    setHasLoaded(false);
+    // setHasLoaded(false);
     checkResponse(res);
   };
 
@@ -121,6 +112,7 @@ const AppointmentPage = () => {
                   className={styles.input}
                   value={appointment.nombre}
                   onChange={handleChange}
+                  disabled={user ? true : false}
                 />
               </Form.Group>
             </Col>
@@ -134,6 +126,7 @@ const AppointmentPage = () => {
                   className={styles.input}
                   value={appointment.apellidos}
                   onChange={handleChange}
+                  disabled={user ? true : false}
                 />
               </Form.Group>
             </Col>
@@ -149,6 +142,7 @@ const AppointmentPage = () => {
                   className={styles.input}
                   value={appointment.telefono}
                   onChange={handleChange}
+                  disabled={user ? true : false}
                 />
               </Form.Group>
             </Col>
@@ -176,8 +170,6 @@ const AppointmentPage = () => {
                   type="date"
                   name="fecha"
                   className={styles.input}
-                  min="2021-05-24"
-                  max="2021-06-30"
                   value={appointment.fecha}
                   onChange={handleChange}
                 />
@@ -193,7 +185,16 @@ const AppointmentPage = () => {
                 onChange={handleChange}
               >
                 <option value={-1}>Seleccione la hora</option>
-                {hasLoaded ? (
+                <option>10:00 am</option>
+                <option>11:00 am</option>
+                <option>12:00 pm</option>
+                <option>13:00 pm</option>
+                <option>14:00 pm</option>
+                <option>15:00 pm</option>
+                <option>16:00 pm</option>
+                <option>17:00 pm</option>
+                <option>18:00 pm</option>
+                {/* {hasLoaded ? (
                   Object.keys(dates).map((key) => (
                     <option key={key}>
                       {dates[key]
@@ -205,7 +206,7 @@ const AppointmentPage = () => {
                   ))
                 ) : (
                   <option>Loading...</option>
-                )}
+                )} */}
               </Form.Control>
             </Col>
           </Row>
