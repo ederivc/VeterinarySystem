@@ -1,5 +1,6 @@
 from datetime import date, datetime
 import functools
+import random
 
 from veterinary.helpers.citasHelpers import (
   verify_appointment, query_appointment, insert_appointment_user,
@@ -36,6 +37,86 @@ def create_cita():
           insert_cita(db, request.json, _datetime)
 
         return {"dfdsf":"kkk"}
+
+@bp.route('/createCitaAdmin', methods=('GET', 'POST'))
+def create_cita_admin():
+  if request.method == "POST":
+    db = get_db()
+
+    email = request.json["email"]
+    nombre = request.json["nombre"]
+    apellidos = request.json["apellidos"]
+    telefono = request.json["telefono"]
+    fecha = request.json["fecha"]
+    hora = request.json["hora"]
+    desc = request.json["descripcion"]
+
+    _datetime = f"{fecha} {hora}"
+    full_name = f'{nombre} {apellidos}'
+
+    id_user = "UC"
+    numbers_user = []
+
+    for _ in range(5):
+      numbers_user.append(random.randint(0, 9))
+
+    for number in numbers_user:
+      id_user += str(number)
+
+    id_guest = "GC"
+    numbers_guest = []
+
+    for _ in range(5):
+      numbers_guest.append(random.randint(0, 9))
+
+    for number in numbers_guest:
+      id_guest += str(number)
+
+
+    user = db.execute(
+      'SELECT user_id FROM User WHERE email = ? AND status != "Administrador"',(email,)
+    ).fetchone()
+
+    if user is None:
+      guest = db.execute(
+      'SELECT guest_id FROM Guest WHERE email = ?',(email,)
+      ).fetchone()
+
+      if guest is None:
+        id_create_user = "GS"
+        numbers_create_user = []
+
+        for i in range(4):
+          numbers_create_user.append(random.randint(0, 9))
+
+        for number in numbers_create_user:
+          id_create_user += str(number)   
+
+        db.execute(
+         'INSERT INTO Guest (guest_id, guest_name, guest_lastName, email, phone) VALUES (?, ?, ?, ?, ?)',
+        (id_create_user, nombre, apellidos, email, telefono))
+        db.commit()
+
+        db.execute(
+          'INSERT INTO AppointmentGuest (appointment_id, guest_id, guest_name, guest_email, appointment_date, descripcion, approved) VALUES (?, ?, ?, ?, ?, ?, ?)',
+        (id_guest, id_create_user, full_name, email, _datetime, desc, 1))
+        db.commit()
+    
+      else:
+        db.execute(
+          'INSERT INTO AppointmentGuest (appointment_id, guest_id, guest_name, guest_email, appointment_date, descripcion, approved) VALUES (?, ?, ?, ?, ?, ?, ?)',
+        (id_guest, guest["guest_id"], full_name, email, _datetime, desc, 1))
+        db.commit()
+    
+    else:
+      db.execute(
+        'INSERT INTO AppointmentUser (appointment_id, user_id, user_name, user_email, appointment_date, descripcion, approved) VALUES (?, ?, ?, ?, ?, ?, ?)',
+      (id_user, user["user_id"], full_name, email, _datetime, desc, 1))
+      db.commit()
+
+    print(request.json)
+
+  return {"OK": "OK"}
 
 
 @bp.route('/updateCita', methods=('GET', 'POST'))

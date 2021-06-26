@@ -83,6 +83,20 @@ class APICitas {
     return [json, response];
   }
 
+  static async createCitaAdmin(data) {
+    const csrfToken = getCookie("csrftoken");
+    const response = await fetch("/citas/createCitaAdmin", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRFToken": csrfToken,
+      },
+      body: JSON.stringify(data),
+    });
+    const json = await response.json();
+    return [json, response];
+  }
+
   static async getDates() {
     const response = await fetch("/citas/getDates", {
       method: "GET",

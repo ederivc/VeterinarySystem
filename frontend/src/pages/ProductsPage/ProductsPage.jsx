@@ -1,14 +1,26 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row, Col, Alert } from "react-bootstrap";
 import { IMG_URL } from "../../api/api";
 import { CartContext } from "../../layouts/Layout";
 import styles from "./ProductsPage.module.css";
 
 const ProductsPage = () => {
   const [products, setProducts] = useState();
-  const { cart, setCard, addedProduct, setAddedProduct } =
-    useContext(CartContext);
-  const [newArr, setNewArr] = useState([]);
+  const {
+    cart,
+    setCart,
+    addedProduct,
+    setAddedProduct,
+    cartTotal,
+    setCartTotal,
+    // needsChange,
+    setNeedsChange,
+    checker,
+  } = useContext(CartContext);
+
+  const [alert, setAlert] = useState();
+  const [alertMsg, setAlertMsg] = useState();
+  const [alertVariant, setAlertVariant] = useState();
 
   const getProducts = async () => {
     const res = await fetch("/products/getProducts");
@@ -16,16 +28,24 @@ const ProductsPage = () => {
     setProducts(json);
   };
 
+  const handleAlert = (msg, variant) => {
+    setAlert(true);
+    setAlertMsg(msg);
+    setAlertVariant(variant);
+    setTimeout(() => {
+      setAlert(false);
+      setAlertMsg("");
+      setAlertVariant("");
+    }, 2000);
+  };
+
   const addProductCard = (product) => {
-    setCard(cart + 1);
-    console.log("++++");
-    if (newArr.length === 0) {
-      newArr.push(product);
-    } else {
-      console.log("not empty");
-      setNewArr([...newArr, product]);
-    }
-    console.log(newArr);
+    setCart(cart + 1);
+    // checker[0] = true;
+    // checker.push(product.product_id);
+    setCartTotal(cartTotal + product.price);
+    setAddedProduct([product, ...addedProduct]);
+    handleAlert("Producto agregado al carrito.", "success");
   };
 
   useEffect(() => {
@@ -36,6 +56,11 @@ const ProductsPage = () => {
     <Container fluid className={styles.products}>
       <h1 className={styles.heading}>Conoce Nuestros Productos</h1>
       <Container fluid className={styles.box_container}>
+        {alert ? (
+          <Alert variant={alertVariant} className="w-75 mx-auto">
+            {alertMsg}
+          </Alert>
+        ) : null}
         <Row className="justify-content-md-center">
           {products
             ? Object.keys(products).map((item) => {

@@ -1,7 +1,7 @@
 // import { useState } from "react";
 import { useEffect, useRef, useState } from "react";
 import { Alert, Button, Form, Modal } from "react-bootstrap";
-import { APICitas, APIProducts, APIUsers, IMG_URL } from "../api/api";
+import { APICitas, APIProducts, IMG_URL } from "../api/api";
 
 const Alerts = (message, variant) => {
   return <Alert variant={variant}>{message}</Alert>;

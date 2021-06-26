@@ -1,17 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Container, Table } from "react-bootstrap";
 import { Alerts } from "../../../../../components/FormUtilities";
-import {
-  ModalDeleteUser,
-  ModalRemoveCita,
-  ModalApprovedCita,
-} from "./CitasUtilities";
+import { ModalRemoveCita, ModalApprovedCita } from "./CitasUtilities";
 import styles from "./GestionCitas.module.css";
 
 const GestionCitas = () => {
   const [citas, setCitas] = useState();
 
-  const [show, setShow] = useState(false);
+  // const [show, setShow] = useState(false);
   const [selectedCitas, setSelectedCitas] = useState();
   const [deleteCitas, setDeleteCitas] = useState(false);
   const [approvedCitas, setApprovedCitas] = useState(false);
@@ -20,10 +16,10 @@ const GestionCitas = () => {
   const [alertMsg, setAlertMsg] = useState();
   const [alertVariant, setAlertVariant] = useState();
 
-  const handleShow = (cita) => {
-    setShow(!show);
-    setSelectedCitas(cita);
-  };
+  // const handleShow = (cita) => {
+  //   setShow(!show);
+  //   setSelectedCitas(cita);
+  // };
 
   const handleDelete = (cita) => {
     setDeleteCitas(!deleteCitas);
@@ -43,9 +39,10 @@ const GestionCitas = () => {
 
   useEffect(() => {
     getCitas();
-  }, [show, deleteCitas, approvedCitas]);
+  }, [deleteCitas, approvedCitas]);
 
   return (
+    // <div className={styles.wrapper}>
     <Container fluid className={styles.container}>
       <h1 className="text-center pt-4">Citas Pendientes</h1>
       <div className={styles.tableCont}>
@@ -123,6 +120,7 @@ const GestionCitas = () => {
         </Table>
       </div>
     </Container>
+    // </div>
   );
 };
 

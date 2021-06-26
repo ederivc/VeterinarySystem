@@ -73,14 +73,39 @@ const CitaAccountPage = () => {
                 <Card className={styles.card}>
                   <Card.Header>{`Cita: ${cont + 1}`}</Card.Header>
                   <Card.Body>
-                    <Card.Title>{`Fecha: ${appointment[i].appointment_date}`}</Card.Title>
-                    <Card.Text>{`Descripción: ${appointment[i].descripcion}`}</Card.Text>
+                    <Card.Title className="font-weight-bold">
+                      {`Cita:`}{" "}
+                      <span className="font-weight-normal">
+                        {appointment[i].appointment_id}
+                      </span>
+                    </Card.Title>
+                    <Card.Text className="font-weight-bold">
+                      {`Fecha y hora: `}
+                      <span className="font-weight-normal">
+                        {appointment[i].appointment_date}
+                      </span>
+                    </Card.Text>
+                    <Card.Text className="font-weight-bold">
+                      {`Descripción: `}
+                      <span className="font-weight-normal">
+                        {appointment[i].descripcion}
+                      </span>
+                    </Card.Text>
+                    <Card.Text className="font-weight-bold">
+                      {`Estado de la cita: `}
+                      <span className="font-weight-normal">
+                        {appointment[i].approved === 1
+                          ? "Aprobada"
+                          : "Pendiente"}
+                      </span>
+                    </Card.Text>
                   </Card.Body>
                   <Row className={styles.rowContainer}>
                     <Button
                       variant="warning"
                       size="lg"
                       onClick={() => handleShow(appointment[i])}
+                      disabled={appointment[i].approved === 1 ? true : false}
                     >
                       Editar
                     </Button>
@@ -88,6 +113,7 @@ const CitaAccountPage = () => {
                       variant="danger"
                       size="lg"
                       onClick={() => handleDelete(appointment[i])}
+                      disabled={appointment[i].approved === 1 ? true : false}
                     >
                       Eliminar
                     </Button>

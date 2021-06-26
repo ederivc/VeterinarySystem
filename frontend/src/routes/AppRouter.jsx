@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import AppointmentPage from "../pages/Citas/AppointmentPage";
-import CartPage from "../pages/CartPage";
+import CartPage from "../pages/CartPage/CartPage";
 import HomePage from "../pages/HomePage/HomePage";
 import LoginPage from "../pages/Login/LoginPage";
 import NotFoundPage from "../pages/NotFoundPage";

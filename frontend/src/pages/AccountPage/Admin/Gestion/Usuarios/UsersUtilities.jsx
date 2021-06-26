@@ -1,5 +1,5 @@
 import { APIUsers } from "../../../../../api/api";
-import { Alert, Button, Form, Modal } from "react-bootstrap";
+import { Button, Form, Modal } from "react-bootstrap";
 import { useState } from "react";
 
 const ModalDeleteUser = ({

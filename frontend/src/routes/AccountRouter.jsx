@@ -8,6 +8,7 @@ import GestionsProducts from "../pages/AccountPage/Admin/Gestion/Productos/Gesti
 import GestionUsuarios from "../pages/AccountPage/Admin/Gestion/Usuarios/GestionUsuarios";
 import GestionCitas from "../pages/AccountPage/Admin/Gestion/Citas/GestionCitas";
 import GestionCitasAprobadas from "../pages/AccountPage/Admin/Gestion/Citas/CitasAprobadas/GestionCitasAprobadas";
+import RegisterCita from "../pages/AccountPage/Admin/Registros/Citas/RegisterCita";
 
 const AccountRouter = ({ path }) => {
   return (
@@ -25,7 +26,7 @@ const AccountRouter = ({ path }) => {
         <RegisterUser />
       </Route>
       <Route path={`${path}/admin/registro/citas`}>
-        <h1>Cita</h1>
+        <RegisterCita />
       </Route>
       <Route path={`${path}/admin/registro/productos`}>
         <Products />

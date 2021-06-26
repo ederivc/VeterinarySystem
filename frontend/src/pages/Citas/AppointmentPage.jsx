@@ -7,13 +7,9 @@ import styles from "./AppointmentPage.module.css";
 
 const AppointmentPage = () => {
   const { user } = useAuth();
-  // const [dates, setDates] = useState();
-  // const [hasLoaded, setHasLoaded] = useState();
   const [alert, setAlert] = useState();
   const [alertMsg, setAlertMsg] = useState();
   const [alertVariant, setAlertVariant] = useState();
-  // const [selectedValue, setSelectedValue] = useState();
-  // const isMountedRef = useRef(true);
 
   const [appointment, setAppointment] = useState({
     nombre: "",
@@ -25,12 +21,6 @@ const AppointmentPage = () => {
     desc: "",
   });
 
-  // const getDates = async () => {
-  //   const res = await APICitas.getDates();
-  //   setDates(res);
-  //   setHasLoaded(true);
-  // };
-
   useEffect(() => {
     setAppointment({
       nombre: user?.first_name ?? "",
@@ -41,9 +31,7 @@ const AppointmentPage = () => {
       hora: "",
       desc: "",
     });
-    // getDates();
   }, [user]);
-  // }, [user, hasLoaded]);
 
   const handleChange = (e) => {
     setAppointment({

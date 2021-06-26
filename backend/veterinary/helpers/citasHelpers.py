@@ -56,19 +56,30 @@ def insert_cita(db, request, _datetime):
     email = request["email"]
     telefono = request["telefono"]
     full_name = f'{nombre} {apellidos}'
-    
+    print("Este es el email: ", email)
+    print(request)
     if g.user:
+        # user_admin = db.execute(
+        #   'SELECT email FROM User WHERE email = ? AND status != "Cliente"', (g.user["email"],)
+        # ).fetchone()
+
+        # if user_admin is None:
+        #   email = g.user["email"]
+        # else:
+        #   print("Dentro de aqui")
+        #   pass
         email = g.user["email"]
 
         id = "UC"
         numbers = []
 
-        for i in range(5):
+        for _ in range(5):
           numbers.append(random.randint(0, 9))
 
         for number in numbers:
           id += str(number) 
 
+        #FIXME 
         user_id = get_id(db, "user_id", "User", email)
 
         db.execute(
