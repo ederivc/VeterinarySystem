@@ -6,10 +6,15 @@ export const CartContext = createContext();
 const Layout = ({ children }) => {
   const [cart, setCart] = useState(0);
   const [cartTotal, setCartTotal] = useState(0);
-  // const [needsChange, setNeedsChange] = useState([false, ""]);
   const [addedProduct, setAddedProduct] = useState([]);
   const cartRef = useRef(addedProduct);
-  // let checker = [false];
+
+  const clearCartInputs = () => {
+    setAddedProduct([]);
+    cartRef.current = addedProduct;
+    setCart(0);
+    setCartTotal(0);
+  };
 
   const contextValue = {
     cart,
@@ -19,9 +24,7 @@ const Layout = ({ children }) => {
     cartTotal,
     setCartTotal,
     cartRef,
-    // needsChange,
-    // setNeedsChange,
-    // checker,
+    clearCartInputs,
   };
 
   return (

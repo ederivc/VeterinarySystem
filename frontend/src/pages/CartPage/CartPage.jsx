@@ -1,9 +1,10 @@
 import React, { useContext, useEffect, useState } from "react";
-import { IMG_URL } from "../../api/api";
+import { APIPedidos, IMG_URL } from "../../api/api";
 import useAuth from "../../auth/useAuth";
 import { CartContext } from "../../layouts/Layout";
 import { Alert } from "react-bootstrap";
 import styles from "./CartPage.module.css";
+import { validateEmail } from "../../components/Validations";
 
 const CartPage = () => {
   const {
@@ -14,9 +15,7 @@ const CartPage = () => {
     cartTotal,
     cartRef,
     setCartTotal,
-    // needsChange,
-    // setNeedsChange,
-    // checker,
+    clearCartInputs,
   } = useContext(CartContext);
 
   const { user } = useAuth();
@@ -120,11 +119,28 @@ const CartPage = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const clearInputs = () => {
+    setUserForm({
+      nombre: user?.first_name ?? "",
+      apellido: user?.last_name ?? "",
+      telefono: user?.phone ?? "",
+      email: user?.email ?? "",
+      direccion: "",
+      codigoPostal: "",
+    });
+    setAddedProduct([]);
+    cartRef.current = addedProduct;
+    setCart(0);
+    setCartTotal(0);
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    let validate = 0;
     Object.entries(userForm).forEach(([key, value]) => {
       if (value === "" || value.trim() === "") {
         handleAlert("No puedes dejar espacios en blanco", "danger");
+        validate = 1;
         return;
       }
 
@@ -134,10 +150,47 @@ const CartPage = () => {
             "El teléfono está incorrecto, debe ser un número de 10 caracteres",
             "danger"
           );
+          validate = 1;
+          return;
+        }
+      }
+
+      if (key === "codigoPostal") {
+        if (
+          isNaN(
+            userForm["codigoPostal"] || userForm["codigoPostal"].length !== 5
+          )
+        ) {
+          handleAlert(
+            "Código postal incorrecto, deber ser un número de 5 caracteres",
+            "danger"
+          );
+          validate = 1;
+          return;
+        }
+      }
+
+      if (key === "email") {
+        if (!validateEmail(userForm["email"])) {
+          handleAlert("El formato del email no es correcto", "danger");
+          validate = 1;
           return;
         }
       }
     });
+
+    if (validate === 0) {
+      const data = { ...userForm, Pedidos: cartRef.current, Total: cartTotal };
+      const res = await APIPedidos.createPedido({
+        data,
+      });
+      if (res[1].status === 400) {
+        handleAlert(res[0]["message"], "danger");
+      } else {
+        clearCartInputs();
+        handleAlert(res[0]["Response"], "success");
+      }
+    }
   };
 
   useEffect(() => {
@@ -148,11 +201,7 @@ const CartPage = () => {
       addedProduct.forEach((actualProduct) => {
         if (actualProduct.product_id === productId) {
           if (actualProduct.hasOwnProperty("totalNum")) {
-            // if (checker[0] && checker[1] === actualProduct.product_id) {
-            //   totalNum = actualProduct.totalNum + 1;
-            // } else {
             totalNum = actualProduct.totalNum;
-            // }
           } else {
             totalNum += 1;
           }
@@ -160,8 +209,6 @@ const CartPage = () => {
       });
       value.totalNum = totalNum;
     });
-
-    // setNeedsChange(false);
 
     const unique = [
       ...new Map(
@@ -255,34 +302,6 @@ const CartPage = () => {
                   );
                 })
               : null}
-            {/* <li class="list-group-item d-flex justify-content-between lh-condensed">
-              <div>
-                <h6 class="my-0">Product name</h6>
-                <small class="text-muted">Brief description</small>
-              </div>
-              <span class="text-muted">$12</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between lh-condensed">
-              <div>
-                <h6 class="my-0">Second product</h6>
-                <small class="text-muted">Brief description</small>
-              </div>
-              <span class="text-muted">$8</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between lh-condensed">
-              <div>
-                <h6 class="my-0">Third item</h6>
-                <small class="text-muted">Brief description</small>
-              </div>
-              <span class="text-muted">$5</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between bg-light">
-              <div class="text-success">
-                <h6 class="my-0">Promo code</h6>
-                <small>EXAMPLECODE</small>
-              </div>
-              <span class="text-success">-$5</span>
-            </li> */}
             <li className="list-group-item d-flex justify-content-between">
               <span>Total</span>
               <strong>{`$${cartTotal}`}</strong>
@@ -294,11 +313,11 @@ const CartPage = () => {
               <input
                 type="text"
                 class="form-control"
-                placeholder="Promo code"
+                placeholder="Código Descuento"
               />
               <div className="input-group-append">
                 <button type="submit" className="btn btn-secondary">
-                  Redeem
+                  Aplicar
                 </button>
               </div>
             </div>
@@ -306,7 +325,7 @@ const CartPage = () => {
         </div>
         <div className="col-md-8 order-md-1">
           <h4 className="mb-3">Datos del Usuario</h4>
-          <form className="needs-validation" novalidate>
+          <form>
             <div className="row">
               <div className="col-md-6 mb-3">
                 <label for="nombre">Nombre</label>
@@ -318,11 +337,8 @@ const CartPage = () => {
                   placeholder=""
                   value={userForm.nombre}
                   onChange={handleChange}
-                  required
+                  disabled={userForm.email ? true : false}
                 />
-                <div className="invalid-feedback">
-                  Valid first name is required.
-                </div>
               </div>
               <div className="col-md-6 mb-3">
                 <label for="apellido">Apellidos</label>
@@ -334,38 +350,28 @@ const CartPage = () => {
                   placeholder=""
                   value={userForm.apellido}
                   onChange={handleChange}
-                  required
+                  disabled={userForm.email ? true : false}
                 />
-                <div className="invalid-feedback">
-                  Valid last name is required.
-                </div>
               </div>
             </div>
 
             <div className="mb-3">
               <label for="telefono">Teléfono</label>
               <div className="input-group">
-                <div className="input-group-prepend"></div>
                 <input
                   type="text"
                   className="form-control"
                   id="telefono"
                   name="telefono"
-                  placeholder=""
+                  placeholder="Ejemplo: 4433609253"
                   value={userForm.telefono}
                   onChange={handleChange}
-                  required
                 />
-                <div className="invalid-feedback" style={{ width: "100%" }}>
-                  Your username is required.
-                </div>
               </div>
             </div>
 
             <div className="mb-3">
-              <label for="email">
-                Email <span className="text-muted">(Optional)</span>
-              </label>
+              <label for="email">Email</label>
               <input
                 type="email"
                 className="form-control"
@@ -374,10 +380,8 @@ const CartPage = () => {
                 placeholder="you@example.com"
                 value={userForm.email}
                 onChange={handleChange}
+                disabled={userForm.email ? true : false}
               />
-              <div className="invalid-feedback">
-                Please enter a valid email address for shipping updates.
-              </div>
             </div>
 
             <div className="mb-3">
@@ -388,27 +392,10 @@ const CartPage = () => {
                 id="direccion"
                 name="direccion"
                 placeholder="1234 Main St"
-                required
                 value={userForm.direccion}
                 onChange={handleChange}
               />
-              <div className="invalid-feedback">
-                Please enter your shipping address.
-              </div>
             </div>
-
-            {/* <div class="mb-3">
-              <label for="address2">
-                Address 2 <span class="text-muted">(Optional)</span>
-              </label>
-              <input
-                type="text"
-                class="form-control"
-                id="address2"
-                placeholder="Apartment or suite"
-                value={userForm.direccion}
-              />
-            </div> */}
             <div class="mb-3">
               <label for="codigoPostal">Código Postal</label>
               <input

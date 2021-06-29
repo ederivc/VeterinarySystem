@@ -9,6 +9,8 @@ import GestionUsuarios from "../pages/AccountPage/Admin/Gestion/Usuarios/Gestion
 import GestionCitas from "../pages/AccountPage/Admin/Gestion/Citas/GestionCitas";
 import GestionCitasAprobadas from "../pages/AccountPage/Admin/Gestion/Citas/CitasAprobadas/GestionCitasAprobadas";
 import RegisterCita from "../pages/AccountPage/Admin/Registros/Citas/RegisterCita";
+import Pedidos from "../pages/AccountPage/User/Pedidos/Pedidos";
+import GestionarPedidos from "../pages/AccountPage/Admin/Gestion/Pedidos/GestionarPedidos";
 
 const AccountRouter = ({ path }) => {
   return (
@@ -20,7 +22,7 @@ const AccountRouter = ({ path }) => {
         <CitaAccountPage />
       </Route>
       <Route path={`${path}/pedidos`}>
-        <WelcomeAccountPage />
+        <Pedidos />
       </Route>
       <Route path={`${path}/admin/registro/usuario`}>
         <RegisterUser />
@@ -46,8 +48,8 @@ const AccountRouter = ({ path }) => {
       <Route path={`${path}/admin/gestion/productos`}>
         <GestionsProducts />
       </Route>
-      <Route path={`${path}/admin/gestion/animales`}>
-        <h1>Gestion animal</h1>
+      <Route path={`${path}/admin/gestion/pedidos`}>
+        <GestionarPedidos />
       </Route>
     </Switch>
   );

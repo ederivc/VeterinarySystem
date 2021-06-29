@@ -6,6 +6,7 @@ DROP TABLE IF EXISTS Admin;
 DROP TABLE IF EXISTS Guest;
 DROP TABLE IF EXISTS Products;
 DROP TABLE IF EXISTS Animal;
+DROP TABLE IF EXISTS Pedidos;
 
 CREATE TABLE User (
     user_id VARCHAR(255) PRIMARY KEY UNIQUE NOT NULL,
@@ -91,7 +92,19 @@ CREATE TABLE Animal(
   tipo VARCHAR(255)
 );
 
+CREATE TABLE Pedidos(
+  pedido_id VARCHAR(255) NOT NULL PRIMARY KEY UNIQUE,
+  user_id VARCHAR(255) NOT NULL,
+  direccion VARCHAR(255) NOT NULL,
+  codigo_postal VARCHAR(255),
+  date TEXT NOT NULL,
+  products TEXT NOT NULL,
+  status TEXT NOT NULL,
+  total TEXT NOT NULL,
+  FOREIGN KEY (user_id) REFERENCES User(user_id)
+)
+
 -- INSERT INTO Products (name, cantidad, price, descripcion) VALUES ("prod1", 20, 50.99, "Descripcion");
 
 
--- INSERT INTO User (email, password, first_name, last_name, phone, status) VALUES ("admin", "pass", "first", "last", "132434", "Admin");
+-- INSERT INTO User (user_id, email, password, first_name, last_name, phone, status) VALUES ("AD0901", "admin@mail.com", "pass", "Nombre", "Apellido", "13211434", "Administrador");

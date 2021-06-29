@@ -69,10 +69,10 @@ const AdminAccountPage = () => {
         linkText="Productos"
       />
       <SidebarLink
-        url={`${url}/admin/gestion/animales`}
+        url={`${url}/admin/gestion/pedidos`}
         iconType="solid"
-        iconName="bone"
-        linkText="Animales"
+        iconName="package"
+        linkText="Pedidos"
       />
     </>
   );

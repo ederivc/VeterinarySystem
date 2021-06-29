@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import styles from "./AccountUtilities.module.css";
+import { Container } from "react-bootstrap";
 
 const SidebarLink = ({ url, iconName, iconType, linkText }) => {
   return (
@@ -12,4 +13,21 @@ const SidebarLink = ({ url, iconName, iconType, linkText }) => {
   );
 };
 
-export { SidebarLink };
+const ProductInfo = ({ title, items }) => {
+  return (
+    <h5 className="mt-2">
+      <span className="font-weight-bold">{title}</span>: {items}
+    </h5>
+  );
+};
+
+const NotFound = ({ title, text }) => {
+  return (
+    <Container className={styles.notFoundContainer}>
+      <h2 className="text-center">{title}</h2>
+      <span className="text-center">{text}</span>
+    </Container>
+  );
+};
+
+export { SidebarLink, ProductInfo, NotFound };

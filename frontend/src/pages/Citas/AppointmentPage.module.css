@@ -20,4 +20,6 @@
 .wrapper {
   padding: 2rem;
   background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+  /* background-color: #0b2241;
+  background-image: linear-gradient(to top, #09203f 0%, #537895 100%); */
 }

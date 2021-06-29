@@ -47,6 +47,9 @@ def create_app(test_config=None):
     from . import users
     app.register_blueprint(users.bp)
 
+    from . import pedidos
+    app.register_blueprint(pedidos.bp)
+
     # from .admin import admin 
 
     return app

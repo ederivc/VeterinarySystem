@@ -228,6 +228,31 @@ class APIAnimals {
   }
 }
 
-const IMG_URL = "http://localhost:5000/static/img/products/";
+class APIPedidos {
+  static async createPedido(data) {
+    const csrfToken = getCookie("csrftoken");
+    const response = await fetch("/pedidos/createPedido", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRFToken": csrfToken,
+      },
+      body: JSON.stringify(data),
+    });
+    const json = await response.json();
+    return [json, response];
+  }
+}
 
-export { APIUsers, APICitas, APIProducts, APIAnimals, IMG_URL };
+const IMG_URL = "http://localhost:5000/static/img/products/";
+const IMG_HOME_URL = "http://localhost:5000/static/img/homeProducts/";
+
+export {
+  APIUsers,
+  APICitas,
+  APIProducts,
+  APIAnimals,
+  APIPedidos,
+  IMG_URL,
+  IMG_HOME_URL,
+};

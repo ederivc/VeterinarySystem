@@ -1,17 +1,49 @@
 .navbar {
   /* background-color: #f9f0d1; */
   /* display: none !important; */
+  /* background-color: #3fbbc0 !important; */
+  /* background-color: #009bd9; */
+}
+
+.navCont {
+  margin-top: 2.5rem;
+}
+
+.topbar {
+  background: #3fbbc0;
+  color: #fff;
+  height: 40px;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.5s;
+}
+
+.topbar.topbar-scrolled {
+  top: -40px;
+}
+
+.topbar i {
+  padding-right: 6px;
 }
 
 .brand {
+  color: #444444 !important;
   font-size: 1.8rem !important;
-  font-weight: 300;
+  font-weight: 600;
+}
+
+.brand img {
+  height: 3rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
 
 .navLink {
-  color: #fff !important;
-  font-size: 1.3rem;
-  font-weight: 300;
+  color: #5b5b5b !important;
+  font-size: 1rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  font-family: "Roboto", sans-serif;
 }
 
 .navLink {
@@ -28,7 +60,7 @@
   height: 2px;
   bottom: 0;
   left: 0;
-  background-color: #ffd70a;
+  background-color: #3fbbc0;
   transform-origin: bottom right;
   transition: transform 0.4s cubic-bezier(0.86, 0, 0.07, 1);
 }
@@ -47,4 +79,27 @@
 
 .cartCont span {
   margin-right: 0.5rem;
+  color: #5b5b5b;
+}
+
+.rigthCont {
+  display: flex;
+  align-items: center;
+}
+
+@media only screen and (max-width: 992px) {
+  .navCont {
+    margin-top: 0;
+  }
+
+  .rigthCont {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media only screen and (max-width: 485px) {
+  .brand span {
+    display: none;
+  }
 }

@@ -13,9 +13,6 @@ const ProductsPage = () => {
     setAddedProduct,
     cartTotal,
     setCartTotal,
-    // needsChange,
-    setNeedsChange,
-    checker,
   } = useContext(CartContext);
 
   const [alert, setAlert] = useState();
