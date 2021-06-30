@@ -7,7 +7,6 @@ Legend
 [ ] - TODO
 
 [] Validate citas inputs
-[] Add default select value
 [] Fix login redirect
 [] Fix user registration validation
 [] Add different appointments ids

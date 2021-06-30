@@ -1,12 +1,5 @@
-.container {
-  /* border: 1px solid darkred; */
-  /* margin: 1.2rem auto;
-  background-color: red; */
-  /* background-color: #eeeeee; */
-}
-
 .sectionSubtitle {
-  font-weight: 500;
+  font-weight: 600;
   font-size: 1.3rem;
   margin-right: 2rem;
   margin-bottom: 0.5rem;
@@ -17,9 +10,24 @@
   height: 3rem !important;
 }
 
+.title {
+  text-align: center;
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.title::after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 100px;
+  height: 3px;
+  background: #3fbbc0;
+  bottom: -12px;
+  left: calc(50% - 50px);
+}
+
 .wrapper {
   padding: 2rem;
-  background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
-  /* background-color: #0b2241;
-  background-image: linear-gradient(to top, #09203f 0%, #537895 100%); */
+  color: #444444 !important;
 }

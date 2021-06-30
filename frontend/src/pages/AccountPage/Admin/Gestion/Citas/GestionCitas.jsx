@@ -44,7 +44,7 @@ const GestionCitas = () => {
   return (
     // <div className={styles.wrapper}>
     <Container fluid className={styles.container}>
-      <h1 className="text-center pt-4">Citas Pendientes</h1>
+      <h1 className={styles.title}>Citas Pendientes</h1>
       <div className={styles.tableCont}>
         {alert ? Alerts(alertMsg, alertVariant, setAlert) : null}
         <Table striped className="" responsive>

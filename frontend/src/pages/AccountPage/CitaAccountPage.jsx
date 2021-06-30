@@ -48,7 +48,7 @@ const CitaAccountPage = () => {
   }, [setSidebar, pickAppointment]);
 
   return (
-    <Container fluid>
+    <Container fluid className={styles.citasContAcc}>
       <h1
         className={
           sidebar

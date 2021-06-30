@@ -103,7 +103,7 @@ const RegisterUser = () => {
 
   return (
     <Container fluid className={`${styles.container} pt-2`}>
-      <h1 className="text-center mt-4">Registrar Usuario</h1>
+      <h1 className={styles.title}>Registrar Usuario</h1>
       <Form className={`${styles.form}`} onSubmit={handleSubmit}>
         {alert ? Alerts(alertMsg, alertVariant, setAlert) : null}
         <h2 className={styles.sectionSubtitle}>Datos Personales</h2>
@@ -160,7 +160,6 @@ const RegisterUser = () => {
                 className={styles.input}
                 value={user.telefono}
                 onChange={handleChange}
-                // required
               />
             </Form.Group>
           </Col>

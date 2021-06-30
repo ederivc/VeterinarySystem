@@ -9,7 +9,6 @@ import ProductsPage from "../pages/ProductsPage/ProductsPage";
 import AdminPage from "../pages/Admin/AdminPage";
 import PrivateRoute from "./PrivateRoute";
 import BaseAccountPage from "../components/BaseAccountPage";
-import AnimalsPage from "../pages/Animals/AnimalsPage";
 import RegisterPage from "../pages/Register/RegisterPage";
 
 const AppRouter = () => {
@@ -23,7 +22,6 @@ const AppRouter = () => {
           <PrivateRoute path="/cuenta" component={BaseAccountPage} />
           <Route exact path="/cita" component={AppointmentPage} />
           <Route exact path="/carrito" component={CartPage} />
-          <Route exact path="/adquisicion" component={AnimalsPage} />
           <Route exact path="/productos" component={ProductsPage} />
           <PrivateRoute exact path="/admin" component={AdminPage} />
 

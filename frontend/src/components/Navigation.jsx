@@ -37,16 +37,13 @@ const Navigation = () => {
         <Navbar collapseOnSelect expand="lg" className={styles.navbar}>
           <Navbar.Brand as={Link} to="/" className={styles.brand}>
             <img src="/logo.svg" alt="logo"></img>
-            <span>Veterinaria</span>
+            <span>Veterinaria Valladolid</span>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="mx-auto">
               <Nav.Link as={Link} to="/cita" className={styles.navLink}>
-                Cita
-              </Nav.Link>
-              <Nav.Link as={Link} to="/adquisicion" className={styles.navLink}>
-                Adopción
+                Citas
               </Nav.Link>
               <Nav.Link as={Link} to="/productos" className={styles.navLink}>
                 Productos
@@ -81,7 +78,7 @@ const Navigation = () => {
                       type="solid"
                       name="user-circle"
                       size="md"
-                      color="#fff"
+                      color="#5b5b5b"
                     ></box-icon>
                   </Nav.Link>
                 )}

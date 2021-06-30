@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { APIPedidos, IMG_URL } from "../../api/api";
 import useAuth from "../../auth/useAuth";
 import { CartContext } from "../../layouts/Layout";
-import { Alert } from "react-bootstrap";
+import { Alert, Container } from "react-bootstrap";
 import styles from "./CartPage.module.css";
 import { validateEmail } from "../../components/Validations";
 
@@ -222,7 +222,7 @@ const CartPage = () => {
   }, [addedProduct, cartRef]);
 
   return (
-    <div className="container mb-4">
+    <Container className={styles.cartContainer}>
       <div className="py-5 text-center">
         <img
           className="d-block mx-auto mb-5"
@@ -572,7 +572,7 @@ const CartPage = () => {
           </form>
         </div>
       </div>
-    </div>
+    </Container>
   );
 };
 

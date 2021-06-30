@@ -1,7 +1,6 @@
 import { Container } from "react-bootstrap";
 import useAuth from "../../auth/useAuth";
 import styles from "./AccountPage.module.css";
-// import { SidebarContext } from "./BaseAccountPage";
 
 const WelcomeAccountPage = () => {
   const { user } = useAuth();

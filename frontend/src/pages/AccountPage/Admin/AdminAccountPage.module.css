@@ -1,0 +1,14 @@
+.inicio {
+  color: #444444 !important;
+  font-weight: 600;
+  padding-left: 0.5rem;
+}
+
+.inicioLink:hover {
+  text-decoration: none !important;
+}
+
+.sidebarSubtitle {
+  font-weight: 600;
+  margin-top: 1rem;
+}

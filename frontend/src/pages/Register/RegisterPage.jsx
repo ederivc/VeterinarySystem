@@ -100,13 +100,8 @@ const RegisterPage = () => {
 
   return (
     <Container fluid className={`${styles.container} pt-4`}>
-      <h1 className="text-center mt-4">Crear Cuenta</h1>
-      <Form
-        // noValidate
-        // validated={validated}
-        className={`${styles.form}`}
-        onSubmit={handleSubmit}
-      >
+      <h1 className={styles.title}>Crear Cuenta</h1>
+      <Form className={`${styles.form}`} onSubmit={handleSubmit}>
         {alert ? Alerts(alertMsg, alertVariant, setAlert) : null}
         <h2 className={styles.sectionSubtitle}>Datos Personales</h2>
         <Row>
@@ -120,12 +115,7 @@ const RegisterPage = () => {
                 className={styles.input}
                 value={user.nombre}
                 onChange={handleChange}
-                // required
-                // isValid={name}
               />
-              {/* <Form.Control.Feedback type="invalid"> */}
-              {/* Please choose a username. */}
-              {/* </Form.Control.Feedback> */}
             </Form.Group>
           </Col>
           <Col className="col-md-6 col-12">
@@ -138,7 +128,6 @@ const RegisterPage = () => {
                 className={styles.input}
                 value={user.apellidos}
                 onChange={handleChange}
-                // required
                 isValid={false}
               />
             </Form.Group>
@@ -155,7 +144,6 @@ const RegisterPage = () => {
                 className={styles.input}
                 value={user.email}
                 onChange={handleChange}
-                // required
               />
             </Form.Group>
           </Col>
@@ -169,7 +157,6 @@ const RegisterPage = () => {
                 className={styles.input}
                 value={user.telefono}
                 onChange={handleChange}
-                // required
               />
             </Form.Group>
           </Col>
@@ -185,7 +172,6 @@ const RegisterPage = () => {
                 className={styles.input}
                 value={user.contraseña}
                 onChange={handleChange}
-                // required
               />
             </Form.Group>
           </Col>
@@ -199,7 +185,6 @@ const RegisterPage = () => {
                 className={styles.input}
                 value={user.confirmarContraseña}
                 onChange={handleChange}
-                // required
               />
             </Form.Group>
           </Col>

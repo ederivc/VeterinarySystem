@@ -1,77 +1,58 @@
 import { Link, useRouteMatch } from "react-router-dom";
 import { SidebarLink } from "../../../components/AccountUtilities";
+import styles from "./AdminAccountPage.module.css";
 
 const AdminAccountPage = () => {
   const { url } = useRouteMatch();
   return (
     <>
-      {/* <SidebarLink
-        url={`${url}`}
-        iconType="solid"
-        iconName="home"
-        linkText="INICIO"
-      /> */}
-      <Link to={url}>
+      <Link to={url} className={styles.inicioLink}>
         <div className="d-flex justify-content-center">
           <box-icon type="solid" name="home"></box-icon>
-          <h4 className="">Inicio</h4>
+          <h4 className={styles.inicio}>Inicio</h4>
         </div>
       </Link>
-      <h5>Registrar</h5>
+      <h5 className={styles.sidebarSubtitle}>Registrar</h5>
       <SidebarLink
         url={`${url}/admin/registro/usuario`}
-        iconType="solid"
-        iconName="user-rectangle"
+        iconClass="bxs-user-rectangle"
         linkText="Usuarios"
       />
       <SidebarLink
         url={`${url}/admin/registro/citas`}
-        iconType=""
-        iconName="money"
+        iconClass="bx-money"
         linkText="Citas"
       />
       <SidebarLink
         url={`${url}/admin/registro/productos`}
-        iconType="solid"
-        iconName="box"
+        iconClass="bxs-box"
         linkText="Productos"
       />
-      <SidebarLink
-        url={`${url}/admin/registro/animales`}
-        iconType="logo"
-        iconName="baidu"
-        linkText="Animales"
-      />
-
-      <h5>Gestionar</h5>
+      <h5 className={styles.sidebarSubtitle}>Gestionar</h5>
       <SidebarLink
         url={`${url}/admin/gestion/usuario`}
-        iconType="solid"
-        iconName="user-account"
+        iconClass="bxs-user-account"
         linkText="Usuarios"
       />
       <SidebarLink
         url={`${url}/admin/gestion/citas/pendientes`}
-        iconType="solid"
-        iconName="calendar-edit"
+        iconClass="bxs-calendar-edit"
         linkText="Citas Pendientes"
       />
+
       <SidebarLink
         url={`${url}/admin/gestion/citas/aprobadas`}
-        iconType="solid"
-        iconName="calendar-check"
+        iconClass="bxs-calendar-check"
         linkText="Citas Aprobadas"
       />
       <SidebarLink
         url={`${url}/admin/gestion/productos`}
-        iconType="solid"
-        iconName="dashboard"
+        iconClass="bxs-dashboard"
         linkText="Productos"
       />
       <SidebarLink
         url={`${url}/admin/gestion/pedidos`}
-        iconType="solid"
-        iconName="package"
+        iconClass="bxs-package"
         linkText="Pedidos"
       />
     </>

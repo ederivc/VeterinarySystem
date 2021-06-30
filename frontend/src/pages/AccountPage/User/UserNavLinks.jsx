@@ -6,28 +6,20 @@ const UserNavLinks = () => {
 
   return (
     <>
-      <SidebarLink
-        url={`${url}`}
-        iconType="solid"
-        iconName="home"
-        linkText="Inicio"
-      />
+      <SidebarLink url={`${url}`} iconClass="bxs-home" linkText="Inicio" />
       <SidebarLink
         url={`${url}/citas`}
-        iconType="logo"
-        iconName="baidu"
+        iconClass="bxl-baidu"
         linkText="Citas"
       />
       <SidebarLink
         url={`${url}/pedidos`}
-        iconType="solid"
-        iconName="cart"
+        iconClass="bxs-cart"
         linkText="Pedidos"
       />
       <SidebarLink
         url={`${url}/cuenta`}
-        iconType="solid"
-        iconName="user"
+        iconClass="bxs-user"
         linkText="Cuenta"
       />
     </>

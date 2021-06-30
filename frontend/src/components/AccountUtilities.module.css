@@ -32,17 +32,23 @@
 }
 
 .navText:hover {
-  background-color: #1a83ff;
+  background-color: #417aa7;
   border-radius: 4px;
+}
+
+.navText:hover > * {
+  color: #fff;
+}
+
+.sidebarOption i {
+  font-size: 1.5rem;
 }
 
 /* CONTAINER / NAVBAR */
 
 .container {
   background-color: #fff;
-  /* height: 95vh; */
   position: relative;
-  /* height: 200vh; */
   min-height: 90vh;
 }
 

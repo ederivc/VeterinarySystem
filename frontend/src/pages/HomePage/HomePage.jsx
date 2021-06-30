@@ -166,7 +166,7 @@ const HomePage = () => {
             <Col className="col-12 col-lg-6">
               <img
                 className="img-fluid"
-                src="https://images.unsplash.com/photo-1571772996211-2f02c9727629?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
+                src="https://images.unsplash.com/photo-1553688738-a278b9f063e0?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
                 alt="about-img"
               ></img>
             </Col>
@@ -300,7 +300,7 @@ const HomePage = () => {
           <iframe
             className={styles.homeIframe}
             title="map"
-            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621"
+            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d939.0754918840064!2d-101.23734!3d19.699764!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x842d0ea4e434e667%3A0xd59796c4e3a1d887!2sVeterinaria%20Valladolid!5e0!3m2!1ses-419!2smx!4v1625017609542!5m2!1ses-419!2smx"
             frameborder="0"
             allowfullscreen
           ></iframe>

@@ -1,6 +1,5 @@
 import { Switch, Route } from "react-router-dom";
 import Products from "../pages/AccountPage/Admin/Registros/Productos/Products";
-import RegisterAnimal from "../pages/AccountPage/Admin/Registros/Animals/RegisterAnimal";
 import RegisterUser from "../pages/AccountPage/Admin/Registros/Usuarios/RegisterUser";
 import CitaAccountPage from "../pages/AccountPage/CitaAccountPage";
 import WelcomeAccountPage from "../pages/AccountPage/WelcomeAccountPage";
@@ -32,9 +31,6 @@ const AccountRouter = ({ path }) => {
       </Route>
       <Route path={`${path}/admin/registro/productos`}>
         <Products />
-      </Route>
-      <Route path={`${path}/admin/registro/animales`}>
-        <RegisterAnimal />
       </Route>
       <Route path={`${path}/admin/gestion/usuario`}>
         <GestionUsuarios />

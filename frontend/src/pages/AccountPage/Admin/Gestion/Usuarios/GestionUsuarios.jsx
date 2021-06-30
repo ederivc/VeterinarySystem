@@ -37,7 +37,7 @@ const GestionUsuarios = () => {
 
   return (
     <Container fluid className={styles.container}>
-      <h1 className="text-center pt-4">Gestión de Usuarios</h1>
+      <h1 className={styles.title}>Gestión de Usuarios</h1>
       <div className={styles.tableCont}>
         {alert ? Alerts(alertMsg, alertVariant, setAlert) : null}
         <Table striped className="" responsive>

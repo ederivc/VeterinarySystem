@@ -85,7 +85,7 @@ const AppointmentPage = () => {
   return (
     <div className={styles.wrapper}>
       <Container className={styles.container}>
-        <h1 className="text-center">Reservar Cita</h1>
+        <h1 className={styles.title}>Reservar Cita</h1>
         <Form>
           {alert ? Alerts(alertMsg, alertVariant, setAlert) : null}
           <h2 className={styles.sectionSubtitle}>Datos Personales</h2>

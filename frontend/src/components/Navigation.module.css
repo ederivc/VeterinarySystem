@@ -1,10 +1,3 @@
-.navbar {
-  /* background-color: #f9f0d1; */
-  /* display: none !important; */
-  /* background-color: #3fbbc0 !important; */
-  /* background-color: #009bd9; */
-}
-
 .navCont {
   margin-top: 2.5rem;
 }
@@ -98,7 +91,7 @@
   }
 }
 
-@media only screen and (max-width: 485px) {
+@media only screen and (max-width: 650px) {
   .brand span {
     display: none;
   }

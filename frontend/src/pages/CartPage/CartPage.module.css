@@ -1,3 +1,24 @@
+.cartContainer {
+  color: #444444 !important;
+  padding-bottom: 2rem;
+}
+
+.cartContainer h2 {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.cartContainer h2::after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 100px;
+  height: 3px;
+  background: #3fbbc0;
+  bottom: -10px;
+  left: calc(50% - 50px);
+}
+
 .productCont {
   display: flex;
   height: 50%;

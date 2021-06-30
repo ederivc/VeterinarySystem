@@ -14,10 +14,6 @@
   color: #fff;
 }
 
-.tRow {
-  background-color: blue;
-}
-
 .btnContainer {
   display: flex;
   justify-content: center;

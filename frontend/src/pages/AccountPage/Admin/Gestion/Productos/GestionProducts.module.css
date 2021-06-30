@@ -1,7 +1,23 @@
 .container {
-  /* background-color: #f1f3fc; */
-  /* background-image: url("https://images.unsplash.com/photo-1597214840472-aa1eaf0e1fac?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1052&q=80"); */
-  min-height: 90vh;
+  color: #444444 !important;
+}
+
+.title {
+  text-align: center;
+  margin-top: 2rem;
+  margin-bottom: 2.5rem;
+  position: relative;
+}
+
+.title::after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 100px;
+  height: 3px;
+  background: #3fbbc0;
+  bottom: -12px;
+  left: calc(50% - 50px);
 }
 
 .tableCont {
@@ -10,12 +26,8 @@
 }
 
 .tableHead {
-  background-color: #1b4768;
+  background-color: #417aa7;
   color: #fff;
-}
-
-.tRow {
-  background-color: blue;
 }
 
 .btnContainer {

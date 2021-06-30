@@ -1,5 +1,6 @@
 .wrapper {
   height: 90vh;
+  color: #444444 !important;
   display: flex;
   justify-content: center;
   align-items: center;

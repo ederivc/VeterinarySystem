@@ -1,9 +1,27 @@
 .sectionSubtitle {
-  font-weight: 500;
+  font-weight: 600;
   font-size: 1.3rem;
   margin-right: 2rem;
   margin-bottom: 0.5rem;
   margin-top: 1.5rem;
+}
+
+.title {
+  text-align: center;
+  margin-top: 2rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.title::after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 100px;
+  height: 3px;
+  background: #3fbbc0;
+  bottom: -12px;
+  left: calc(50% - 50px);
 }
 
 .input {
@@ -12,7 +30,5 @@
 
 .wrapper {
   padding: 2rem;
-  /* background-image: url("https://wallpapercave.com/wp/wp3123707.jpg");
-  background-size: cover; */
-  /* background-color: red; */
+  color: #444444 !important;
 }

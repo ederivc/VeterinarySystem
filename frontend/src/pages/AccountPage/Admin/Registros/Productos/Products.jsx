@@ -86,7 +86,7 @@ const Products = () => {
   return (
     <div className={`${styles.wrapper}`}>
       <Container className={styles.container}>
-        <h1 className="text-center">Registrar Producto</h1>
+        <h1 className={styles.title}>Registrar Producto</h1>
         <Form>
           {alert ? Alerts(alertMsg, alertVariant, setAlert) : null}
           <h2 className={styles.sectionSubtitle}>Datos del Producto</h2>

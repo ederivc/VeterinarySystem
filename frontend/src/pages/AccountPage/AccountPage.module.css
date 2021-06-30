@@ -1,12 +1,28 @@
+.citasContAcc {
+  color: #444444 !important;
+}
+
 .title {
-  /* background-color: red; */
   text-align: center;
-  color: #000;
+  color: #444444;
+  position: relative;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.title::after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 50px;
+  height: 3px;
+  background: #3fbbc0;
+  bottom: -5px;
+  left: calc(50% - 25px);
 }
 
 .infoContainer {
   transition: all 500ms linear;
-  /* height: 200vh; */
 }
 
 /* CARDS */
@@ -17,30 +33,23 @@
 }
 
 .rowContainer {
-  /* border: 1px solid red; */
   display: flex;
   justify-content: space-evenly;
 }
 
 /* WELCOME ACCOUNT PAGE */
 
-.mainWelcomeContainer {
-  /* display: flex; */
-}
-
 .contentDiv {
   width: 100%;
-  background-color: #f1f7fc;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2.5rem 4rem;
-  /* margin-left: 5rem; */
+  padding: 3rem 4rem;
   padding-left: 5rem;
 }
 
 .welcomeDiv {
-  background-color: #375e83;
+  background-color: #417aa7;
   padding: 2rem;
   border-radius: 1rem;
   color: white;
