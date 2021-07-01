@@ -38,8 +38,6 @@ const ProductsPage = () => {
 
   const addProductCard = (product) => {
     setCart(cart + 1);
-    // checker[0] = true;
-    // checker.push(product.product_id);
     setCartTotal(cartTotal + product.price);
     setAddedProduct([product, ...addedProduct]);
     handleAlert("Producto agregado al carrito.", "success");

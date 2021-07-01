@@ -1,0 +1,44 @@
+.container {
+  color: #444444 !important;
+}
+
+.sectionSubtitle {
+  font-weight: 600;
+  font-size: 1.3rem;
+  margin-right: 2rem;
+  margin-bottom: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+.input {
+  height: 3rem !important;
+}
+
+.form {
+  width: 90%;
+  margin: auto;
+  margin-top: 3rem !important;
+}
+
+.title {
+  position: relative;
+  text-align: center;
+  margin-top: 1.6rem;
+}
+
+.title::after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 100px;
+  height: 3px;
+  background: #3fbbc0;
+  bottom: -12px;
+  left: calc(50% - 50px);
+}
+
+@media only screen and (max-width: 768px) {
+  .form {
+    margin-top: 1.5rem !important;
+  }
+}

@@ -37,3 +37,19 @@
   border-radius: 5px;
   color: #fff;
 }
+
+.imgCont {
+  height: 70px;
+  display: flex;
+  justify-content: center;
+}
+
+.imgCont img {
+  height: 100%;
+}
+
+.tableHead {
+  background-color: #417aa7;
+  color: #fff;
+  text-align: center;
+}

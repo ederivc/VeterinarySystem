@@ -66,6 +66,20 @@ class APIUsers {
     const json = await response.json();
     return [json, response];
   }
+
+  static async updateUserAccount(data) {
+    const csrfToken = getCookie("csrftoken");
+    const response = await fetch("/users/updateUserAccount", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRFToken": csrfToken,
+      },
+      body: JSON.stringify(data),
+    });
+    const json = await response.json();
+    return [json, response];
+  }
 }
 
 class APICitas {
@@ -232,6 +246,20 @@ class APIPedidos {
   static async createPedido(data) {
     const csrfToken = getCookie("csrftoken");
     const response = await fetch("/pedidos/createPedido", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRFToken": csrfToken,
+      },
+      body: JSON.stringify(data),
+    });
+    const json = await response.json();
+    return [json, response];
+  }
+
+  static async updatePedido(data) {
+    const csrfToken = getCookie("csrftoken");
+    const response = await fetch("/pedidos/updatePedido", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

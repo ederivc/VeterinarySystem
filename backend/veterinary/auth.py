@@ -22,26 +22,22 @@ def login():
         ).fetchone()
 
         if user_request is None:
-            
             error = "Incorrect user"
             abort(400)
 
-        # elif not check_password_hash(user['password'], password):
-            # error = 'Incorrect password.'
-        elif(user_request["password"] != password):
-            error = "Incorrect password"
+        elif not check_password_hash(user_request['password'], password):
+            print("Error")
+            error = 'Incorrect password.'
+            abort(400)
+
+        elif user_request['active'] != 1:
+            error = 'Cuanta no activada'
             abort(400)
 
         if error is None:
             session.clear()
             session['user_id'] = user_request['user_id']
             print(session['user_id'])
-            # _dict = {}
-            # for i, value in enumerate(user_request):
-            #     _dict[i] = value
-            # print(type(user_request))
-            # print(_dict)
-            # print("login response", user_request)
             return user_request
 
     return "Login"

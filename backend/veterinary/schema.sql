@@ -7,6 +7,7 @@ DROP TABLE IF EXISTS Guest;
 DROP TABLE IF EXISTS Products;
 DROP TABLE IF EXISTS Animal;
 DROP TABLE IF EXISTS Pedidos;
+DROP TABLE IF EXISTS Token;
 
 CREATE TABLE User (
     user_id VARCHAR(255) PRIMARY KEY UNIQUE NOT NULL,
@@ -15,7 +16,8 @@ CREATE TABLE User (
     first_name VARCHAR(150) NOT NULL,
     last_name VARCHAR(150) NOT NULL,
     phone VARCHAR(255) NOT NULL UNIQUE,
-    status VARCHAR(150) NOT NULL
+    status VARCHAR(150) NOT NULL,
+    active INTEGER NOT NULL
     -- FOREIGN KEY (user_id) REFERENCES AppointmentUser(user_id)
 );
 
@@ -45,6 +47,12 @@ CREATE TABLE Appointment (
 );
 
 -- INSERT INTO Appointment (appointment_date) VALUES ("2021-05-29 09:30 am");
+
+CREATE TABLE Token (
+  user_id VARCHAR(255) NOT NULL PRIMARY KEY UNIQUE,
+  token TEXT,
+  FOREIGN KEY (user_id) REFERENCES User(user_id)
+);
 
 CREATE TABLE AppointmentUser (
   appointment_id VARCHAR(255) NOT NULL PRIMARY KEY UNIQUE,

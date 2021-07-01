@@ -2,8 +2,7 @@ import { Link } from "react-router-dom";
 import styles from "./AccountUtilities.module.css";
 import { Container } from "react-bootstrap";
 
-const SidebarLink = ({ url, iconName, iconType, linkText, iconClass }) => {
-  console.log(iconClass);
+const SidebarLink = ({ url, linkText, iconClass }) => {
   return (
     <li className={styles.navText}>
       <Link to={url} className={styles.sidebarOption}>

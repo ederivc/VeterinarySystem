@@ -61,7 +61,7 @@ const HomePage = () => {
             className={`${styles.servicesCol} col-12 col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0 animate__animated animate__bounceInLeft`}
           >
             <div className={`${styles.colWrapper}`}>
-              <div className="icon-box" data-aos="fade-up" data-aos-delay="100">
+              <div className="icon-box">
                 <div className={styles.icon}>
                   <i className="bx bx-plus-medical"></i>
                 </div>
@@ -81,7 +81,7 @@ const HomePage = () => {
             className={`${styles.servicesCol} col-12 col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0 animate__animated animate__bounceInLeft`}
           >
             <div className={`${styles.colWrapper}`}>
-              <div className="icon-box" data-aos="fade-up" data-aos-delay="100">
+              <div className="icon-box">
                 <div className={styles.icon}>
                   <i className="bx bxs-bone"></i>
                 </div>

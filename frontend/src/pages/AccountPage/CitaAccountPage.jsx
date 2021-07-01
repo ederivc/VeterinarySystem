@@ -6,6 +6,7 @@ import {
   CustomModal,
   ModalDelete,
 } from "../../components/FormUtilities";
+import { NotFound } from "../../components/AccountUtilities";
 import styles from "./AccountPage.module.css";
 
 const CitaAccountPage = () => {
@@ -123,7 +124,10 @@ const CitaAccountPage = () => {
             );
           })
         ) : (
-          <p>asdasd</p>
+          <NotFound
+            title="Sección vacia"
+            text="Aún no cuentas con ninguna cita, dirigete a la sección de citas para agendar una"
+          />
         )}
         {show ? (
           <CustomModal

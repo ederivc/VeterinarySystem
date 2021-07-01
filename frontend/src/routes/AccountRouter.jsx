@@ -9,6 +9,7 @@ import GestionCitas from "../pages/AccountPage/Admin/Gestion/Citas/GestionCitas"
 import GestionCitasAprobadas from "../pages/AccountPage/Admin/Gestion/Citas/CitasAprobadas/GestionCitasAprobadas";
 import RegisterCita from "../pages/AccountPage/Admin/Registros/Citas/RegisterCita";
 import Pedidos from "../pages/AccountPage/User/Pedidos/Pedidos";
+import UserAccount from "../pages/AccountPage/User/Account/UserAccount";
 import GestionarPedidos from "../pages/AccountPage/Admin/Gestion/Pedidos/GestionarPedidos";
 
 const AccountRouter = ({ path }) => {
@@ -22,6 +23,9 @@ const AccountRouter = ({ path }) => {
       </Route>
       <Route path={`${path}/pedidos`}>
         <Pedidos />
+      </Route>
+      <Route path={`${path}/cuenta`}>
+        <UserAccount />
       </Route>
       <Route path={`${path}/admin/registro/usuario`}>
         <RegisterUser />

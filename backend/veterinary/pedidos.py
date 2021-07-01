@@ -71,7 +71,7 @@ def get_pedidos():
       pedido["products"] = ast.literal_eval(pedido["products"])
       _dict[i] = pedido
 
-    print(_dict)
+    # print(_dict)
 
   return _dict
 
@@ -80,7 +80,6 @@ def get_pedidos():
 def get_all_pedidos():
   db = get_db()
   if g.user:
-    id = g.user["user_id"]
     pedidos = db.execute(
         'SELECT * FROM Pedidos'
     ).fetchall()
@@ -90,9 +89,25 @@ def get_all_pedidos():
       pedido["products"] = ast.literal_eval(pedido["products"])
       _dict[i] = pedido
 
-    print(_dict)
+    # print(_dict)
 
   return _dict
+
+
+@bp.route('/updatePedido', methods=('GET', 'POST'))
+def update_pedido():
+  if request.method == "POST":
+    id = request.json["id"]
+    status = request.json["status"]
+
+    db = get_db()
+    db.execute(
+      'UPDATE Pedidos SET status = ? WHERE pedido_id = ?',
+      (status, id)
+    )
+    db.commit() 
+
+    return {"Update": "Pedido"}
 
 
 @bp.before_app_request

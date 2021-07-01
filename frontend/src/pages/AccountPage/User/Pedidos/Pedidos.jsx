@@ -37,7 +37,10 @@ const Pedidos = () => {
             >
               <Col md={6} className={`${styles.infoContainer} p-2 pl-3`}>
                 <h3 className="text-center mb-3">Información del Pedido</h3>
-                <ProductInfo title="Pedido" items={pedidos[i].pedido_id} />
+                <ProductInfo
+                  title="Pedido"
+                  items={`#${pedidos[i].pedido_id}`}
+                />
                 <ProductInfo title="Fecha" items={pedidos[i].date} />
                 <ProductInfo
                   title="Dirección de Envío"
@@ -93,8 +96,8 @@ const Pedidos = () => {
                 </div>
               </Col>
               <Col className="mt-2">
-                <Table striped bordered hover responsive>
-                  <thead>
+                <Table striped hover responsive>
+                  <thead className={styles.tableHead}>
                     <tr className="text-center">
                       <th>ID del producto</th>
                       <th>Nombre</th>

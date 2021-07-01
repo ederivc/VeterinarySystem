@@ -3,8 +3,9 @@ import { Container, Table } from "react-bootstrap";
 import {
   Alerts,
   ModalDeleteProduct,
-  ModalUpdate,
+  // ModalUpdate,
 } from "../../../../../components/FormUtilities";
+import { ModalUpdate } from "./GestionPedidosUtilitites";
 import styles from "./GestionarPedidos.module.css";
 
 const GestionarPedidos = () => {
@@ -49,7 +50,6 @@ const GestionarPedidos = () => {
               <th>Cliente</th>
               <th>Dirección</th>
               <th>Fecha del Pedido</th>
-              <th>Productos</th>
               <th>Total</th>
               <th>Status</th>
               <th>Modificar</th>
@@ -59,19 +59,11 @@ const GestionarPedidos = () => {
             {pedidos ? (
               Object.keys(pedidos).map((item) => {
                 return (
-                  <tr className="text-center" key={pedidos[item].product_id}>
+                  <tr className="text-center" key={pedidos[item].pedido_id}>
                     <td>{`#${pedidos[item].pedido_id}`}</td>
                     <td>{pedidos[item].user_id}</td>
                     <td>{`${pedidos[item].direccion}, ${pedidos[item].codigo_postal}`}</td>
                     <td>{pedidos[item].date}</td>
-                    {pedidos[item].products.map((producto) => {
-                      return (
-                        <td className="d-flex flex-column">
-                          <span>{producto.name}</span>
-                          <span>{producto.totalNum}</span>
-                        </td>
-                      );
-                    })}
                     <td>{`$${pedidos[item].total}`}</td>
                     <td>{pedidos[item].status}</td>
                     <td>
@@ -98,17 +90,17 @@ const GestionarPedidos = () => {
                 <td>Loading</td>
               </tr>
             )}
-            {/* {show ? (
+            {show ? (
               <ModalUpdate
                 show={show}
                 handleClose={handleShow}
-                selectedProduct={selectedProduct}
+                selectedPedido={selectedPedido}
                 setAlert={setAlert}
                 setAlertMsg={setAlertMsg}
                 setAlertVariant={setAlertVariant}
               />
             ) : null}
-            {deleteProduct ? (
+            {/* {deleteProduct ? (
               <ModalDeleteProduct
                 show={deleteProduct}
                 handleClose={handleDelete}

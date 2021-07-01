@@ -1,4 +1,3 @@
-// import { useState } from "react";
 import { useEffect, useRef, useState } from "react";
 import { Alert, Button, Form, Modal } from "react-bootstrap";
 import { APICitas, APIProducts, IMG_URL } from "../api/api";
@@ -126,20 +125,6 @@ const CustomModal = ({
               <option>16:00 pm</option>
               <option>17:00 pm</option>
               <option>18:00 pm</option>
-              {/* <option value={-1}>{formData.hora}</option>
-              {hasLoaded ? (
-                Object.keys(dates).map((key) => (
-                  <option key={key}>
-                    {dates[key]
-                      .split(" ")
-                      .slice(1)
-                      .toString()
-                      .replace(",", " ")}
-                  </option>
-                ))
-              ) : (
-                <option>Loading...</option>
-              )} */}
             </Form.Control>
           </Form.Group>
           <Form.Group className="mb-3" controlId="formDesc">

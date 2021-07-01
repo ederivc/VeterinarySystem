@@ -66,7 +66,7 @@ def create_product():
 
     try:
 
-      filename = f'producto{request.json["nombre"]}.png' 
+      filename = f'producto{request.json["nombre"]}{request.json["marca"]}.png' 
 
       save_image(request.json["img"], filename) 
 

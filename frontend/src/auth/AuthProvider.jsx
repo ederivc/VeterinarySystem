@@ -33,7 +33,14 @@ const AuthProvider = ({ children }) => {
 
   const isLogged = () => !!user;
 
-  const contextValue = { user, setUser, isLogged, sidebar, showSidebar };
+  const contextValue = {
+    user,
+    setUser,
+    isLogged,
+    sidebar,
+    showSidebar,
+    checkSession,
+  };
 
   return (
     // <h1>jjkjlk</h1>
