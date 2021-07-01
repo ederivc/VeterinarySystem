@@ -93,6 +93,15 @@ const RegisterUser = () => {
       }
     }
 
+    const phone = parseInt(user.telefono);
+    if (isNaN(phone) || user.telefono.length !== 10) {
+      handleAlert(
+        "El teléfono está incorrecto, debe ser un número de 10 caracteres",
+        "danger"
+      );
+      return;
+    }
+
     verifyPassword();
   };
 

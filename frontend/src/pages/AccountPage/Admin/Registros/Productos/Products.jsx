@@ -70,7 +70,7 @@ const Products = () => {
     }
   };
 
-  const handleSubmit = async () => {
+  const sendRequest = async () => {
     const res = await APIProducts.createProduct({
       nombre: products.nombre,
       marca: products.marca,
@@ -81,6 +81,31 @@ const Products = () => {
       img: selectedFile,
     });
     checkResponse(res);
+  };
+
+  const verifyInputs = () => {
+    for (const info in products) {
+      if (products[info] === "") {
+        handleAlert("No puedes dejar espacios en blanco", "danger");
+        return;
+      }
+    }
+
+    const precio = parseInt(products.precio);
+    const cantidad = parseInt(products.cantidad);
+    if (isNaN(precio) || isNaN(cantidad) || precio <= 0 || cantidad <= 0) {
+      handleAlert(
+        "El precio y la cantidad deben de ser números mayores que cero",
+        "danger"
+      );
+      return;
+    }
+
+    sendRequest();
+  };
+
+  const handleSubmit = () => {
+    verifyInputs();
   };
 
   return (

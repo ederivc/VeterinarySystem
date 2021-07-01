@@ -2,13 +2,10 @@ import React, { useState } from "react";
 import { Col, Container, Form, Row, Button } from "react-bootstrap";
 import { APICitas } from "../../../../../api/api";
 import { Alerts } from "../../../../../components/FormUtilities";
-// import { APICitas } from "../../api/api";
-// import useAuth from "../../auth/useAuth";
-// import { Alerts } from "../../components/FormUtilities";
+import { validateEmail } from "../../../../../components/Validations";
 import styles from "./RegisterCita.module.css";
 
 const RegisterCita = () => {
-  // const { user } = useAuth();
   const [alert, setAlert] = useState();
   const [alertMsg, setAlertMsg] = useState();
   const [alertVariant, setAlertVariant] = useState();
@@ -22,18 +19,6 @@ const RegisterCita = () => {
     hora: "",
     desc: "",
   });
-
-  // useEffect(() => {
-  // setAppointment({
-  //   nombre: user?.first_name ?? "",
-  //   apellidos: user?.last_name ?? "",
-  //   telefono: user?.phone ?? "",
-  //   email: user?.email ?? "",
-  //   fecha: "",
-  //   hora: "",
-  //   desc: "",
-  // });
-  // }, [user]);
 
   const handleChange = (e) => {
     setAppointment({
@@ -61,7 +46,7 @@ const RegisterCita = () => {
     }
   };
 
-  const handleSubmit = async () => {
+  const sendRequest = async () => {
     const res = await APICitas.createCitaAdmin({
       nombre: appointment["nombre"],
       apellidos: appointment["apellidos"],
@@ -81,6 +66,35 @@ const RegisterCita = () => {
       desc: "",
     });
     checkResponse(res);
+  };
+
+  const verifyInputs = () => {
+    for (const info in appointment) {
+      if (appointment[info] === "") {
+        handleAlert("No puedes dejar espacios en blanco", "danger");
+        return;
+      }
+    }
+
+    const phone = parseInt(appointment.telefono);
+    if (isNaN(phone) || appointment.telefono.length !== 10) {
+      handleAlert(
+        "El teléfono está incorrecto, debe ser un número de 10 caracteres",
+        "danger"
+      );
+      return;
+    }
+
+    if (!validateEmail(appointment.email)) {
+      handleAlert("El formato del email no es correcto", "danger");
+      return;
+    }
+
+    sendRequest();
+  };
+
+  const handleSubmit = () => {
+    verifyInputs();
   };
 
   return (
