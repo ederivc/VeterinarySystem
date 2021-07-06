@@ -13,7 +13,7 @@
 }
 
 .container {
-  height: 32rem;
+  height: 35rem;
   display: flex;
   border-radius: 10px;
   background-color: #fff;
@@ -36,16 +36,16 @@
 
 .submitBtn {
   width: 100%;
+  margin-bottom: -2rem;
 }
 
 .redirect {
   text-align: center;
-  margin-top: 2rem;
+  margin-top: 2.5rem;
 }
 
 .imgContainer {
   width: 40%;
-  /* border: 1px solid red; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -54,4 +54,16 @@
 .imgContainer img {
   height: 80%;
   width: 70%;
+}
+
+@media (max-width: 398px) {
+  .wrapper {
+    height: 95vh;
+  }
+
+  .container {
+    height: 38rem;
+    /* margin-top: 2rem;
+    margin-bottom: 2rem; */
+  }
 }

@@ -176,7 +176,7 @@ const RegisterPage = () => {
               <Form.Control
                 type="password"
                 name="contraseña"
-                placeholder="Contraseña (3 caracteres mínimo)"
+                placeholder="Contraseña"
                 className={styles.input}
                 value={user.contraseña}
                 onChange={handleChange}

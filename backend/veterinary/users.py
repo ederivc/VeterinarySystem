@@ -221,7 +221,7 @@ def delete_user(id):
       user_in_pedido = db.execute('SELECT * FROM Pedidos WHERE user_id = ?', (id,)
       ).fetchall()
 
-      if user_in_appointment is None and user_in_pedido is None:
+      if len(user_in_appointment) == 0 and len(user_in_pedido) == 0:
         db.execute('DELETE FROM User WHERE user_id = ?', (id,)
         )
         db.commit()

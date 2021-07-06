@@ -29,7 +29,7 @@ const Navigation = () => {
             <i className="icofont-clock-time"></i> Lunes - Sábado, 8AM a 10PM
           </div>
           <div className="d-flex align-items-center">
-            <i class="bx bxs-phone"></i> Llámanos +1 5589 55488 55
+            <i class="bx bxs-phone"></i> Llámanos 4431204200
           </div>
         </div>
       </div>

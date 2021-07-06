@@ -23,11 +23,6 @@ const GestionarPedidos = () => {
     setSelectedPedido(pedido);
   };
 
-  const handleDelete = (pedido) => {
-    setDeletePedido(!deletePedido);
-    setSelectedPedido(pedido);
-  };
-
   const getPedidos = async () => {
     const res = await fetch("/pedidos/getAllPedidos");
     const json = await res.json();
@@ -74,12 +69,6 @@ const GestionarPedidos = () => {
                         >
                           <i className="bx bxs-edit"></i>
                         </div>
-                        <div
-                          className={styles.deleteIcon}
-                          onClick={() => handleDelete(pedidos[item])}
-                        >
-                          <i className="bx bxs-trash-alt"></i>
-                        </div>
                       </div>
                     </td>
                   </tr>
@@ -100,16 +89,6 @@ const GestionarPedidos = () => {
                 setAlertVariant={setAlertVariant}
               />
             ) : null}
-            {/* {deleteProduct ? (
-              <ModalDeleteProduct
-                show={deleteProduct}
-                handleClose={handleDelete}
-                selectedProduct={selectedProduct}
-                setAlert={setAlert}
-                setAlertMsg={setAlertMsg}
-                setAlertVariant={setAlertVariant}
-              />
-            ) : null} */}
           </tbody>
         </Table>
       </div>

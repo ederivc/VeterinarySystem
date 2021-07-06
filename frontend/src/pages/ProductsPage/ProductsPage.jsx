@@ -74,7 +74,7 @@ const ProductsPage = () => {
                       <h3>{products[item].name}</h3>
                       {products[item].descripcion}
                       <div className={styles.price}>
-                        {products[item].price} <span>$70.99</span>{" "}
+                        ${products[item].price}
                       </div>
                       <div className={styles.iconCont}>
                         Agregar{" "}

@@ -1,6 +1,7 @@
 import styles from "./HomePage.module.css";
 import { Container, Button, Row, Col, Carousel } from "react-bootstrap";
 import { IMG_HOME_URL } from "../../api/api";
+import { Link } from "react-router-dom";
 
 const HomePage = () => {
   return (
@@ -13,11 +14,11 @@ const HomePage = () => {
             alt="First slide"
           />
           <Carousel.Caption className={styles.carouselCaption}>
-            <h3>First slide label</h3>
-            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+            <h3>¡Ven y conocenos!</h3>
+            <p>Conoce nuestros servicios para tu mascota.</p>
           </Carousel.Caption>
           <Carousel.Caption className={styles.smallCarouselText}>
-            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+            <p>Siempre sera importante cuidar de nuestros mejores amigos.</p>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item interval={500} className={styles.carouselItem}>
@@ -27,11 +28,14 @@ const HomePage = () => {
             alt="Second slide"
           />
           <Carousel.Caption className={styles.carouselCaption}>
-            <h3>Second slide label</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+            <h3>Explora y descubre</h3>
+            <p>
+              Nuestro sitio web proporcionara un pequeño vistazo a nuestros
+              servicios.
+            </p>
           </Carousel.Caption>
           <Carousel.Caption className={styles.smallCarouselText}>
-            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+            <p>Si te registras podras acceder a estas funcionalidades.</p>
           </Carousel.Caption>
         </Carousel.Item>
         <Carousel.Item className={styles.carouselItem}>
@@ -41,13 +45,11 @@ const HomePage = () => {
             alt="Third slide"
           />
           <Carousel.Caption className={styles.carouselCaption}>
-            <h3>Third slide label</h3>
-            <p>
-              Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-            </p>
+            <h3>¿Tienes dudas?</h3>
+            <p>Resuelve cualquier duda acudiendo a la sucursal</p>
           </Carousel.Caption>
           <Carousel.Caption className={styles.smallCarouselText}>
-            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+            <p>Todos los clientes son bienvendios.</p>
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
@@ -67,12 +69,13 @@ const HomePage = () => {
                 </div>
                 <h4 className="title">
                   <a href="/" className={styles.serviceTitle}>
-                    Lorem Ipsum
+                    Medicina
                   </a>
                 </h4>
                 <p className="description">
-                  Voluptatum deleniti atque corrupti quos dolores et quas
-                  molestias excepturi
+                  Contamos con excelentes programas de medicina preventiva como
+                  es la aplicación de vacunas para perros y gatos de los
+                  laboratorios más reconocidos.
                 </p>
               </div>
             </div>
@@ -87,12 +90,12 @@ const HomePage = () => {
                 </div>
                 <h4 className="title">
                   <a href="/" className={styles.serviceTitle}>
-                    Lorem Ipsum
+                    Productos
                   </a>
                 </h4>
                 <p className="description">
-                  Voluptatum deleniti atque corrupti quos dolores et quas
-                  molestias excepturi
+                  Contamos con venta de Alimento, Medicamentos y Accesorios para
+                  sus mascotas.
                 </p>
               </div>
             </div>
@@ -107,12 +110,12 @@ const HomePage = () => {
                 </div>
                 <h4 className="title">
                   <a href="/" className={styles.serviceTitle}>
-                    Lorem Ipsum
+                    Adopción
                   </a>
                 </h4>
                 <p className="description">
-                  Voluptatum deleniti atque corrupti quos dolores et quas
-                  molestias excepturi
+                  Promovemos la adopción, no la compra de mascotas. Por lo que
+                  colaboramos con distintos refugios en la búsqueda de hogares.
                 </p>
               </div>
             </div>
@@ -127,12 +130,12 @@ const HomePage = () => {
                 </div>
                 <h4 className="title">
                   <a href="/" className={styles.serviceTitle}>
-                    Lorem Ipsum
+                    Consulta
                   </a>
                 </h4>
                 <p className="description">
-                  Voluptatum deleniti atque corrupti quos dolores et quas
-                  molestias excepturi
+                  Contamos con revisión médica por parte de nuestros doctores
+                  para poder identificar algún padecimiento o enfermedad.
                 </p>
               </div>
             </div>
@@ -143,12 +146,13 @@ const HomePage = () => {
       <Container fluid className={styles.agendarCitaContainer}>
         <h3>¿Se encuentra en alguna emergencia? ¿Necesita ayuda ahora?</h3>
         <p>
-          Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
-          dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-          proident, sunt in culpa qui officia deserunt mollit anim id est
-          laborum.
+          Para nosotros es muy importante escucharte te pedimos por favor que
+          agendes una cita y en breve el personal de nuestro equipo te
+          contactará para dar atención a tu solicitud de información, gracias.
         </p>
-        <Button>Agende una Cita ahora mismo</Button>
+        <Button as={Link} to="/cita" className={styles.agendarCitaBtn}>
+          Agende una Cita ahora mismo
+        </Button>
       </Container>
 
       <section className={`${styles.about} pb-5`}>
@@ -156,10 +160,10 @@ const HomePage = () => {
           <div className={styles.aboutHeader}>
             <h2 className="text-center">Acerca de Nosotros</h2>
             <p>
-              Magnam dolores commodi suscipit. Necessitatibus eius consequatur
-              ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam
-              quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea.
-              Quia fugiat sit in iste officiis commodi quidem hic quas.
+              En Veterinaria Valladolid el propósito es promover el bienestar de
+              los animales a través de la excelencia en medicina veterinaria,
+              estándares médicos, educación y servicio sin precedentes para
+              nuestros clientes y la comunidad.
             </p>
           </div>
           <Row>
@@ -172,35 +176,35 @@ const HomePage = () => {
             </Col>
             <Col className={`${styles.contentAbout} col-12 col-lg-6 pt-lg-0`}>
               <h3 className="mt-4 mt-md-3 mt-lg-0 text-center text-lg-left">
-                Voluptatem dignissimos provident quasi corporis voluptates sit
-                assumenda.
+                Misión y Visión
               </h3>
               <p className="font-italic text-justify pt-2 mb-2">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                A continuación nuestra misión y visión.
               </p>
               <ul className="text-justify p-0">
                 <li>
-                  <i className="bx bx-check-circle"></i> Ullamco laboris nisi ut
-                  aliquip ex ea commodo consequat.
+                  <i className="bx bx-check-circle"></i>
+                  Nuestra visión es reconocer el valor de cada mascota y
+                  cliente, comprometidos a proporcionar un valor excepcional en
+                  el cuidado de sus mascotas.
                 </li>
                 <li>
-                  <i className="bx bx-check-circle"></i> Duis aute irure dolor
-                  in reprehenderit in voluptate velit.
+                  <i className="bx bx-check-circle"></i>
+                  Nuestra misión es proporcionar la atención médica de la más
+                  alta calidad a nuestros pacientes en todos los aspectos del
+                  cuidado y la propiedad de los animales, incluida la conciencia
+                  de la salud pública.
                 </li>
                 <li>
-                  <i className="bx bx-check-circle"></i> Ullamco laboris nisi ut
-                  aliquip ex ea commodo consequat. Duis aute irure dolor in
-                  reprehenderit in voluptate trideta storacalaperda mastiro
-                  dolore eu fugiat nulla pariatur.
+                  <i className="bx bx-check-circle"></i> Ambas en conjunto
+                  forman los ideales de nuestra empresa, y representan lo que
+                  buscamos dia a dia con nuestros pacientes animales.
                 </li>
               </ul>
               <p className="text-justify">
-                Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis
-                aute irure dolor in reprehenderit in voluptate velit esse cillum
-                dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-                cupidatat non proident, sunt in culpa qui officia deserunt
-                mollit anim id est laborum
+                Lo importante para nosotros son tus mejores amigos animales,
+                recuerda, son familia, y hay que cuidarlos lo mas posible,
+                ademas de brindarle servicio de calidad.
               </p>
             </Col>
           </Row>
@@ -212,10 +216,9 @@ const HomePage = () => {
           <div className={`${styles.productsContHeader}`}>
             <h2>Productos más Vendidos</h2>
             <p className="py-3">
-              Magnam dolores commodi suscipit. Necessitatibus eius consequatur
-              ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam
-              quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea.
-              Quia fugiat sit in iste officiis commodi quidem hic quas.
+              Nuestros productos mas vendidos son aquellos disponibles la mayor
+              parte del tiempo, ademas de que la mayor parte de nuestros
+              clientes la recomiendan para sus mascotas.
             </p>
           </div>
           <Row className={styles.productsRow}>
@@ -229,8 +232,8 @@ const HomePage = () => {
                   />
                 </div>
                 <div className={styles.productInfo}>
-                  <h4>Walter White</h4>
-                  <span>Chief Medical Officer</span>
+                  <h4>Alimentador automatico</h4>
+                  <span>Para perros y gatos</span>
                 </div>
               </div>
             </div>
@@ -244,8 +247,10 @@ const HomePage = () => {
                   />
                 </div>
                 <div className={styles.productInfo}>
-                  <h4>Walter White</h4>
-                  <span>Chief Medical Officer</span>
+                  <h4>Transportador de mascota</h4>
+                  <span>
+                    Lleva a tu mascota de viaje de forma comoda y segura
+                  </span>
                 </div>
               </div>
             </div>
@@ -259,8 +264,8 @@ const HomePage = () => {
                   />
                 </div>
                 <div className={styles.productInfo}>
-                  <h4>Walter White</h4>
-                  <span>Chief Medical Officer</span>
+                  <h4>Casa grande de perro</h4>
+                  <span>Con suficiente espacio para muchos tamaños</span>
                 </div>
               </div>
             </div>
@@ -274,8 +279,8 @@ const HomePage = () => {
                   />
                 </div>
                 <div className={styles.productInfo}>
-                  <h4>Walter White</h4>
-                  <span>Chief Medical Officer</span>
+                  <h4>Recogedor de desechos</h4>
+                  <span>Limpia las necesidades de tu mascota</span>
                 </div>
               </div>
             </div>
@@ -288,10 +293,8 @@ const HomePage = () => {
           <div className="text-center">
             <h2>Encuentranos</h2>
             <p className="my-4">
-              Magnam dolores commodi suscipit. Necessitatibus eius consequatur
-              ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam
-              quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea.
-              Quia fugiat sit in iste officiis commodi quidem hic quas.
+              Nos encontramos ubicados en la calle Manantial Mintzita 173, Los
+              Manantiales, 58188 Morelia, Mich. Te esperamos!
             </p>
           </div>
         </Container>
@@ -321,7 +324,7 @@ const HomePage = () => {
               </div>
               <div className={styles.addressCont}>
                 <span>
-                  Constelaciones 357-Interior 1, Cosmos, 58050 Morelia, Mich.
+                  Manantial Mintzita 173, Los Manantiales, 58188 Morelia, Mich.
                 </span>
               </div>
             </ul>

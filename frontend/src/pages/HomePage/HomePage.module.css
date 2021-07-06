@@ -171,18 +171,18 @@
   margin-bottom: 1rem;
 }
 
-.agendarCitaContainer button {
-  background-color: transparent;
-  padding: 1rem;
-  border-radius: 50px;
-  border: 2px solid #fff;
-  font-weight: 500;
+.agendarCitaBtn {
+  background-color: transparent !important;
+  padding: 1rem !important;
+  border-radius: 50px !important;
+  border: 2px solid #fff !important;
+  font-weight: 500 !important;
 }
 
-.agendarCitaContainer button:hover {
-  background-color: #fff;
-  color: #000;
-  border: 2px solid #fff;
+.agendarCitaBtn:hover {
+  background-color: #fff !important;
+  color: #000 !important;
+  border: 2px solid #fff !important;
 }
 
 .about {
