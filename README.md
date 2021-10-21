@@ -1,3 +1,3 @@
-# VeterinarySystem
+# Veterinary System
 
-A website and users system for Valladolid Veterinary
+A website and users system to manage your veterinary
